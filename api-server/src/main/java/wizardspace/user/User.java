@@ -41,7 +41,7 @@ public class User extends DDBEntity<User> {
 
     @Override
     public AmazonDynamoDB createDDBClient() {
-        if (this.ddb == null) this.ddb = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_WEST_2).build();
+        if (this.ddb == null) this.ddb = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
 
         return this.ddb;
     }

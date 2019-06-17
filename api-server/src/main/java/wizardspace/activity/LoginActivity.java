@@ -28,7 +28,7 @@ public class LoginActivity extends Activity {
         try {
             user.read();
 
-            if (StringUtils.equals(password, user.getAttribute(PASSWORD).toDynamoDBAttributeValue().getS()))
+            if (! StringUtils.equals(password, user.getAttribute(PASSWORD).toDynamoDBAttributeValue().getS()))
                 throw new NotAuthorizedException("Incorrect email or password");
 
         } catch (EntityNotFoundException e) {
