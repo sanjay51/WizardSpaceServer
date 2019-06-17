@@ -11,4 +11,9 @@ public class Service extends LambdaRestService {
     public Activity getLoginActivity() {
         return new LoginActivity();
     }
+
+    @GET(path="/hello")
+    public String hello() {
+        return "world";
+    }
 }
