@@ -22,6 +22,9 @@ dependencies {
             'IxLambdaBackendFramework:IxLambdaAPIFramework:1.0',
             'IxLambdaBackendFramework:IxLambdaStorageLib:1.0',
     )
+
+    compileOnly('org.projectlombok:lombok:1.18.8')
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
 }
 
 jar {

@@ -6,8 +6,14 @@ import IxLambdaBackend.annotation.POST;
 import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
 import wizardspace.activity.LoginActivity;
+import wizardspace.activity.users.CreateUserActivity;
 
 public class Service extends LambdaRestService {
+
+    @POST(path="/users")
+    public Activity createUserActivity() {
+        return new CreateUserActivity();
+    }
 
     @GET(path="/login")
     public Activity getLoginActivity() {
