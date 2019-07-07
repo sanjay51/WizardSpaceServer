@@ -33,9 +33,9 @@ public class CreateUserActivity extends Activity {
         user.setAttributeValue(LNAME, lname);
         user.setAttributeValue(ACCESS_LEVEL, AccessLevel.FOUR.toString());
         user.setAttributeValue(ACCOUNT_STATUS, AccountStatus.ACTIVE.toString());
-        user.setAttributeValue(CREATION_EPOCH, epochMillis);
-        user.setAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
-        user.setAttributeValue(LAST_UPDATED_BY, epochMillis);
+        user.setNumberAttributeValue(CREATION_EPOCH, epochMillis);
+        user.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
+        user.setNumberAttributeValue(LAST_UPDATED_BY, epochMillis);
 
         user.create();
 

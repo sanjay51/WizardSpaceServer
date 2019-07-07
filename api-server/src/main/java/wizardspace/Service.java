@@ -2,6 +2,7 @@ package wizardspace;
 
 import IxLambdaBackend.activity.Activity;
 import IxLambdaBackend.annotation.GET;
+import IxLambdaBackend.annotation.PATCH;
 import IxLambdaBackend.annotation.POST;
 import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
@@ -9,9 +10,11 @@ import wizardspace.activity.LoginActivity;
 import wizardspace.activity.sessions.CreateSessionActivity;
 import wizardspace.activity.users.CreateUserActivity;
 import wizardspace.activity.users.GetUserByIdActivity;
+import wizardspace.activity.users.UpdateUserActivity;
 
 public class Service extends LambdaRestService {
 
+    /* USER ROUTES */
     @POST(path="/users")
     public Activity createUserActivity() {
         return new CreateUserActivity();
@@ -22,6 +25,12 @@ public class Service extends LambdaRestService {
         return new GetUserByIdActivity();
     }
 
+    @PATCH(path="/users/{userId}")
+    public Activity updateUserActivity() {
+        return new UpdateUserActivity();
+    }
+
+    /* SESSION ROUTES */
     @POST(path="/sessions")
     public Activity createSessionActivity() {
         return new CreateSessionActivity();

@@ -3,6 +3,7 @@ package wizardspace.user;
 public class Constants {
     public static String AUTH_ID = "authId";
     public static String REQUESTER_ID = "requesterId";
+    public static String ATTRIBUTES = "attributes";
 
     // USER related
     public static String TABLE_USER = "user";

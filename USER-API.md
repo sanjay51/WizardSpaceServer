@@ -105,12 +105,12 @@ Request:
     path: /users/{id},
     method: PATCH,
     body: {
-        editorID: String,
+        requesterId: String,
         authID: String,
-        attributes: [
-            { name: String, value: String}
-            ..
-        ]
+        attributes: {
+            name: value,
+            ...
+        }
     }
 }
 ```
