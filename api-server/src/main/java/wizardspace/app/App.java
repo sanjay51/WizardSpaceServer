@@ -33,17 +33,17 @@ public class App extends DDBEntity<App> {
         final Map<String, Types> attributes = new HashMap<String, Types>() {{
             put(APP_ID, new Types(ValueType.STRING, IndexType.PRIMARY_KEY).withAccess(AccessType.READ_ONLY));
             put(DEV_ID, new Types(ValueType.STRING, IndexType.GSI_PRIMARY_KEY)).withAccess(AccessType.READ_ONLY);
-            put(NAME, new Types(ValueType.STRING));
+            put(NAME, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
             put(DESCRIPTION, new Types(ValueType.STRING));
             put(IMAGE_URL, new Types(ValueType.STRING));
             put(LIVE_VERSION, new Types(ValueType.NUMBER));
-            put(LAST_UPDATED_EPOCH, new Types(ValueType.NUMBER));
-            put(LAST_UPDATED_BY, new Types(ValueType.STRING));
-            put(CREATION_EPOCH, new Types(ValueType.NUMBER));
+            put(LAST_UPDATED_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
+            put(LAST_UPDATED_BY, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
+            put(CREATION_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(CATEGORY, new Types(ValueType.STRING));
             put(SCREENSHOT_URLS, new Types(ValueType.STRING_SET));
-            put(RATING, new Types(ValueType.NUMBER));
-            put(REVIEW_COUNT, new Types(ValueType.NUMBER));
+            put(RATING, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
+            put(REVIEW_COUNT, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
         }};
 
         return new Schema(TABLE_APPS, attributes);
