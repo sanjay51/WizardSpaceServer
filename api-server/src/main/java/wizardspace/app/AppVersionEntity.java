@@ -28,6 +28,7 @@ public class AppVersionEntity extends DDBEntity<AppVersionEntity> {
             put(DEV_ID, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
             put(NAME, new Types(ValueType.STRING));
             put(DESCRIPTION, new Types(ValueType.STRING));
+            put(PUBLIC_VERSION, new Types(ValueType.STRING));
         }};
 
         return new Schema(TABLE_APP_VERSIONS, attributes);

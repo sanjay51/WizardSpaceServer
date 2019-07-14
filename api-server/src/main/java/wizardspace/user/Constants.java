@@ -9,7 +9,6 @@ public class Constants {
     public static String TABLE_USER = "user";
     public static String GSI_USER_ID = "userId-index";
 
-    public static String USER = "user";
     public static String EMAIL = "email";
     public static String USER_ID = "userId";
     public static String PASSWORD = "password";
@@ -29,10 +28,12 @@ public class Constants {
     public static String DEV_ID = "devId";
     public static String NAME = "name";
     public static String DESCRIPTION = "description";
-    public static String IMAGE_URL = "imageUrl";
+    public static String LOGO = "logo";
     public static String LIVE_VERSION = "liveVersion";
+    public static String DRAFT_VERSION = "draftVersion";
+    public static String PUBLIC_VERSION = "publicVersion";
     public static String CATEGORY = "category";
-    public static String SCREENSHOT_URLS = "screenshotUrls";
+    public static String IMAGES = "images";
     public static String RATING = "rating";
     public static String REVIEW_COUNT = "reviewCount";
     // public static String LAST_UPDATED_EPOCH = "lastUpdatedEpoch";
@@ -45,6 +46,7 @@ public class Constants {
     // public static String DEV_ID = "devId";
     // public static String NAME = "name";
     // public static String DESCRIPTION = "description";
+    // public static String PUBLIC_VERSION = "publicVersion";
 
     // APP-NAME related
     public static String TABLE_APP_NAMES = "wz-app-names";
