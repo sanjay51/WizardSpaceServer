@@ -6,7 +6,6 @@ import IxLambdaBackend.annotation.PATCH;
 import IxLambdaBackend.annotation.POST;
 import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
-import wizardspace.activity.LoginActivity;
 import wizardspace.activity.sessions.CreateSessionActivity;
 import wizardspace.activity.users.CreateUserActivity;
 import wizardspace.activity.users.GetUserByIdActivity;
@@ -14,7 +13,8 @@ import wizardspace.activity.users.UpdateUserActivity;
 
 public class Service extends LambdaRestService {
 
-    /* USER ROUTES */
+    /** USER ROUTES */
+
     @POST(path="/users")
     public Activity createUserActivity() {
         return new CreateUserActivity();
@@ -30,21 +30,16 @@ public class Service extends LambdaRestService {
         return new UpdateUserActivity();
     }
 
-    /* SESSION ROUTES */
+    /** SESSION ROUTES */
+
     @POST(path="/sessions")
     public Activity createSessionActivity() {
         return new CreateSessionActivity();
     }
 
-    @GET(path="/login")
-    public Activity getLoginActivity() {
-        return new LoginActivity();
-    }
+    /** APP ROUTES */
 
-    @POST(path="/login-post")
-    public Activity getLogin() {
-        return new LoginActivity();
-    }
+    /** OTHER TEST ROUTES */
 
     @GET(path="/hello")
     public String hello() {

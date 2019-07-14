@@ -20,4 +20,21 @@ public class Constants {
     public static String CREATION_EPOCH = "creationEpoch";
     public static String LAST_UPDATED_EPOCH = "lastUpdatedEpoch";
     public static String LAST_UPDATED_BY = "lastUpdatedBy";
+
+    // APP related
+    public static String TABLE_APPS = "wz-apps";
+    public static String GSI_DEV_APP_ID = "devId-appId-index";
+
+    public static String APP_ID = "appId";
+    public static String DEV_ID = "devId";
+    public static String NAME = "name";
+    public static String DESCRIPTION = "description";
+    public static String IMAGE_URL = "imageUrl";
+    public static String LIVE_VERSION = "liveVersion";
+    public static String CATEGORY = "category";
+    public static String SCREENSHOT_URLS = "screenshotUrls";
+    public static String RATING = "rating";
+    public static String REVIEW_COUNT = "reviewCount";
+    // public static String LAST_UPDATED_EPOCH = "lastUpdatedEpoch";
+    // public static String CREATION_EPOCH = "creationEpoch";
 }

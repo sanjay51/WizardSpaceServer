@@ -10,8 +10,8 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     flatDir {
-        dirs '/personal-workspace/IxLambdaBackendFramework/IxLambdaAPIFramework/build/libs'
-        dirs '/personal-workspace/IxLambdaBackendFramework/IxLambdaStorageLib/build/libs'
+        dirs '/personal-workspace/IxLambdaAPIFramework/IxLambdaAPIFramework/build/libs'
+        dirs '/personal-workspace/IxLambdaAPIFramework/IxLambdaStorageLib/build/libs'
     }
 }
 

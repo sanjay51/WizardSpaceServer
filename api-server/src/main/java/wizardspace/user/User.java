@@ -8,6 +8,7 @@ import IxLambdaBackend.storage.schema.Types;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import wizardspace.client.DynamoDBClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,8 +52,6 @@ public class User extends DDBEntity<User> {
 
     @Override
     public AmazonDynamoDB createDDBClient() {
-        if (this.ddb == null) this.ddb = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
-
-        return this.ddb;
+        return DynamoDBClient.get();
     }
 }
