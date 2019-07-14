@@ -8,7 +8,7 @@ import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import wizardspace.user.AccessLevel;
 import wizardspace.user.AccountStatus;
-import wizardspace.user.User;
+import wizardspace.user.UserEntity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +26,7 @@ public class CreateUserActivity extends Activity {
 
         final long epochMillis = System.currentTimeMillis();
 
-        final User user = new User(email);
+        final UserEntity user = new UserEntity(email);
         user.setAttributeValue(USER_ID, UUID.randomUUID().toString());
         user.setAttributeValue(PASSWORD, password);
         user.setAttributeValue(FNAME, fname);

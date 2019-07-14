@@ -14,9 +14,9 @@ import java.util.Map;
 
 import static wizardspace.user.Constants.*;
 
-public class AppVersion extends DDBEntity<AppVersion> {
+public class AppVersionEntity extends DDBEntity<AppVersionEntity> {
 
-    public AppVersion(String primaryKeyValue, String sortKeyValue) {
+    public AppVersionEntity(final String primaryKeyValue, final String sortKeyValue) {
         super(primaryKeyValue, sortKeyValue);
     }
 

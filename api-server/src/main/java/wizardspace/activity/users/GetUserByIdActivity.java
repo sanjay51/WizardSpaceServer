@@ -10,7 +10,7 @@ import IxLambdaBackend.response.Response;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import wizardspace.user.Auth;
-import wizardspace.user.User;
+import wizardspace.user.UserEntity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +22,7 @@ public class GetUserByIdActivity extends Activity {
     protected Response enact() throws Exception {
         final String userId = getParameterByName(USER_ID).getStringValue();
 
-        final User user = User.newInstanceFromGSI(userId, GSI_USER_ID);
+        final UserEntity user = UserEntity.newInstanceFromGSI(userId, GSI_USER_ID);
         user.read();
 
         return new Response(user.getAsKeyValueObject());

@@ -14,7 +14,7 @@ import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import com.google.common.collect.ImmutableMap;
 import wizardspace.user.AttributesParamValidator;
 import wizardspace.user.Auth;
-import wizardspace.user.User;
+import wizardspace.user.UserEntity;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class UpdateUserActivity extends Activity {
         final Map<String, String> attributes = (Map<String, String>) getParameterByName(ATTRIBUTES).getValue();
         final String userId = getParameterByName(USER_ID).getStringValue();
 
-        final User user = User.newInstanceFromGSI(userId, GSI_USER_ID);
+        final UserEntity user = UserEntity.newInstanceFromGSI(userId, GSI_USER_ID);
         user.read();
 
         final Map<String, String> failedUpdates = new HashMap<>();
@@ -60,7 +60,7 @@ public class UpdateUserActivity extends Activity {
     protected List<Parameter> getParameters() {
         final List<ParamValidator> validators = Arrays.asList(new StringNotBlankValidator());
         final ParamValidator attributesValidator =
-                new AttributesParamValidator(new User("").getSchema());
+                new AttributesParamValidator(new UserEntity("").getSchema());
 
         return Arrays.asList(
                 new Parameter(REQUESTER_ID, validators),

@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static wizardspace.user.Constants.*;
 
-public class AppName extends DDBEntity<AppName> {
+public class AppNameEntity extends DDBEntity<AppNameEntity> {
     @Override
     public Schema createSchema() {
         final Map<String, Types> attributes = new HashMap<String, Types>() {{

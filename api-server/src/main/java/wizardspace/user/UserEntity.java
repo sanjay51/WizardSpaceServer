@@ -5,9 +5,7 @@ import IxLambdaBackend.storage.attribute.value.ValueType;
 import IxLambdaBackend.storage.schema.IndexType;
 import IxLambdaBackend.storage.schema.Schema;
 import IxLambdaBackend.storage.schema.Types;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import wizardspace.client.DynamoDBClient;
 
 import java.util.HashMap;
@@ -17,19 +15,19 @@ import static IxLambdaBackend.storage.schema.AccessType.READ_ONLY;
 import static IxLambdaBackend.storage.schema.AccessType.WRITE_ONLY;
 import static wizardspace.user.Constants.*;
 
-public class User extends DDBEntity<User> {
+public class UserEntity extends DDBEntity<UserEntity> {
     private AmazonDynamoDB ddb;
 
-    public User(final String primaryKeyValue) {
+    public UserEntity(final String primaryKeyValue) {
         super(primaryKeyValue);
     }
 
-    private User(final String primaryKeyValue, final String gsiIndexName) {
+    private UserEntity(final String primaryKeyValue, final String gsiIndexName) {
         super(primaryKeyValue, null, gsiIndexName);
     }
 
-    public static User newInstanceFromGSI(final String primaryKeyValue, final String gsiIndexName) {
-        return new User(primaryKeyValue, gsiIndexName);
+    public static UserEntity newInstanceFromGSI(final String primaryKeyValue, final String gsiIndexName) {
+        return new UserEntity(primaryKeyValue, gsiIndexName);
     }
 
     @Override

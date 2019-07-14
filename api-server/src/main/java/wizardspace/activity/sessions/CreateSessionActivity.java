@@ -9,7 +9,7 @@ import IxLambdaBackend.util.TokenUtils;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import wizardspace.user.Auth;
-import wizardspace.user.User;
+import wizardspace.user.UserEntity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +23,7 @@ public class CreateSessionActivity extends Activity {
         final String email = getParameterByName(EMAIL).getStringValue();
         final String password = getParameterByName(PASSWORD).getStringValue();
 
-        final User user = new User(email);
+        final UserEntity user = new UserEntity(email);
         user.read();
 
         if (! password.equals((String) user.getAttribute(PASSWORD).get())) {

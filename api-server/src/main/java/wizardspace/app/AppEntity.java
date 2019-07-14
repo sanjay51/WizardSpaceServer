@@ -14,18 +14,18 @@ import java.util.Map;
 
 import static wizardspace.user.Constants.*;
 
-public class App extends DDBEntity<App> {
+public class AppEntity extends DDBEntity<AppEntity> {
 
-    public App(String primaryKeyValue) {
+    public AppEntity(final String primaryKeyValue) {
         super(primaryKeyValue);
     }
 
-    private App(String gsiPrimaryKeyValue, String gsiSortKeyValue) {
+    private AppEntity(final String gsiPrimaryKeyValue, final String gsiSortKeyValue) {
         super(gsiPrimaryKeyValue, gsiSortKeyValue, GSI_DEV_APP_ID);
     }
 
-    public App newInstanceFromGSI(String gsiPrimaryKeyValue, String gsiSortKeyValue) {
-        return new App(gsiPrimaryKeyValue, gsiSortKeyValue);
+    public AppEntity newInstanceFromGSI(final String gsiPrimaryKeyValue, final String gsiSortKeyValue) {
+        return new AppEntity(gsiPrimaryKeyValue, gsiSortKeyValue);
     }
 
     @Override
