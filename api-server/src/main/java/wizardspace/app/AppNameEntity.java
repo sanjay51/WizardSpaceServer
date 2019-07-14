@@ -14,6 +14,10 @@ import java.util.Map;
 import static wizardspace.user.Constants.*;
 
 public class AppNameEntity extends DDBEntity<AppNameEntity> {
+    public AppNameEntity(String primaryKeyValue) {
+        super(primaryKeyValue);
+    }
+
     @Override
     public Schema createSchema() {
         final Map<String, Types> attributes = new HashMap<String, Types>() {{
