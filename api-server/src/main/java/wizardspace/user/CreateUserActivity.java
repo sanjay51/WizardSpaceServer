@@ -1,4 +1,4 @@
-package wizardspace.activity.users;
+package wizardspace.user;
 
 import IxLambdaBackend.activity.Activity;
 import IxLambdaBackend.activity.Parameter;
@@ -6,15 +6,15 @@ import IxLambdaBackend.auth.AuthStrategy;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
-import wizardspace.user.AccessLevel;
-import wizardspace.user.AccountStatus;
-import wizardspace.user.UserEntity;
+import wizardspace.user.entity.AccessLevel;
+import wizardspace.user.entity.AccountStatus;
+import wizardspace.user.entity.UserEntity;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import static wizardspace.user.Constants.*;
+import static wizardspace.Constants.*;
 
 public class CreateUserActivity extends Activity {
     @Override

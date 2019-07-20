@@ -1,4 +1,4 @@
-package wizardspace.user;
+package wizardspace.user.entity;
 
 import IxLambdaBackend.storage.DDBEntity;
 import IxLambdaBackend.storage.attribute.value.ValueType;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static IxLambdaBackend.storage.schema.AccessType.READ_ONLY;
 import static IxLambdaBackend.storage.schema.AccessType.WRITE_ONLY;
-import static wizardspace.user.Constants.*;
+import static wizardspace.Constants.*;
 
 public class UserEntity extends DDBEntity<UserEntity> {
     private AmazonDynamoDB ddb;

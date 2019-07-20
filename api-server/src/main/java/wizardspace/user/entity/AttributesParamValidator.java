@@ -1,4 +1,4 @@
-package wizardspace.user;
+package wizardspace.user.entity;
 
 import IxLambdaBackend.activity.Parameter;
 import IxLambdaBackend.storage.schema.Schema;

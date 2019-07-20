@@ -6,10 +6,11 @@ import IxLambdaBackend.annotation.PATCH;
 import IxLambdaBackend.annotation.POST;
 import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
-import wizardspace.activity.sessions.CreateSessionActivity;
-import wizardspace.activity.users.CreateUserActivity;
-import wizardspace.activity.users.GetUserByIdActivity;
-import wizardspace.activity.users.UpdateUserActivity;
+import wizardspace.app.CreateAppActivity;
+import wizardspace.session.CreateSessionActivity;
+import wizardspace.user.CreateUserActivity;
+import wizardspace.user.GetUserByIdActivity;
+import wizardspace.user.UpdateUserActivity;
 
 public class Service extends LambdaRestService {
 
@@ -38,6 +39,11 @@ public class Service extends LambdaRestService {
     }
 
     /** APP ROUTES */
+
+    @POST(path="/apps")
+    public Activity createAppActivity() {
+        return new CreateAppActivity();
+    }
 
     /** OTHER TEST ROUTES */
 

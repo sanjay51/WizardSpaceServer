@@ -1,4 +1,4 @@
-package wizardspace.activity.users;
+package wizardspace.user;
 
 import IxLambdaBackend.activity.Activity;
 import IxLambdaBackend.activity.Parameter;
@@ -10,12 +10,12 @@ import IxLambdaBackend.response.Response;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import wizardspace.user.Auth;
-import wizardspace.user.UserEntity;
+import wizardspace.user.entity.UserEntity;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static wizardspace.user.Constants.*;
+import static wizardspace.Constants.*;
 
 public class GetUserByIdActivity extends Activity {
     @Override

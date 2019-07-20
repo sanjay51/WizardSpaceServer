@@ -1,4 +1,4 @@
-package wizardspace.activity.users;
+package wizardspace.user;
 
 import IxLambdaBackend.activity.Activity;
 import IxLambdaBackend.activity.Parameter;
@@ -12,16 +12,16 @@ import IxLambdaBackend.validator.param.NotNullValidator;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import com.google.common.collect.ImmutableMap;
-import wizardspace.user.AttributesParamValidator;
+import wizardspace.user.entity.AttributesParamValidator;
 import wizardspace.user.Auth;
-import wizardspace.user.UserEntity;
+import wizardspace.user.entity.UserEntity;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static wizardspace.user.Constants.*;
+import static wizardspace.Constants.*;
 
 public class UpdateUserActivity extends Activity {
     @Override

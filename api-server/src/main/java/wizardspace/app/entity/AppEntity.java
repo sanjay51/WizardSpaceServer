@@ -1,4 +1,4 @@
-package wizardspace.app;
+package wizardspace.app.entity;
 
 import IxLambdaBackend.storage.DDBEntity;
 import IxLambdaBackend.storage.attribute.value.ValueType;
@@ -12,7 +12,8 @@ import wizardspace.client.DynamoDBClient;
 import java.util.HashMap;
 import java.util.Map;
 
-import static wizardspace.user.Constants.*;
+import static wizardspace.Constants.*;
+import static wizardspace.app.AppConstants.*;
 
 public class AppEntity extends DDBEntity<AppEntity> {
 
@@ -32,15 +33,15 @@ public class AppEntity extends DDBEntity<AppEntity> {
     public Schema createSchema() {
         final Map<String, Types> attributes = new HashMap<String, Types>() {{
             put(APP_ID, new Types(ValueType.STRING, IndexType.PRIMARY_KEY).withAccess(AccessType.READ_ONLY));
-            put(DEV_ID, new Types(ValueType.STRING, IndexType.GSI_PRIMARY_KEY)).withAccess(AccessType.READ_ONLY);
+            put(DEV_ID, new Types(ValueType.STRING, IndexType.GSI_PRIMARY_KEY).withAccess(AccessType.READ_ONLY));
             put(NAME, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
             put(DESCRIPTION, new Types(ValueType.STRING));
             put(LOGO, new Types(ValueType.STRING));
-            put(LIVE_VERSION, new Types(ValueType.NUMBER));
-            put(DRAFT_VERSION, new Types(ValueType.NUMBER));
+            put(LIVE_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.RESTRICTED));
+            put(DRAFT_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.RESTRICTED));
             put(PUBLIC_VERSION, new Types(ValueType.STRING));
             put(LAST_UPDATED_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
-            put(LAST_UPDATED_BY, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
+            put(LAST_UPDATED_BY, new Types(ValueType.STRING).withAccess(AccessType.RESTRICTED));
             put(CREATION_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(CATEGORY, new Types(ValueType.STRING));
             put(IMAGES, new Types(ValueType.STRING_SET));

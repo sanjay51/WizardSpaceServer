@@ -1,4 +1,4 @@
-package wizardspace.app;
+package wizardspace.app.entity;
 
 import IxLambdaBackend.storage.DDBEntity;
 import IxLambdaBackend.storage.attribute.value.ValueType;
@@ -12,11 +12,16 @@ import wizardspace.client.DynamoDBClient;
 import java.util.HashMap;
 import java.util.Map;
 
-import static wizardspace.user.Constants.*;
+import static wizardspace.Constants.*;
+import static wizardspace.app.AppConstants.*;
 
 public class AppVersionEntity extends DDBEntity<AppVersionEntity> {
 
     public AppVersionEntity(final String primaryKeyValue, final String sortKeyValue) {
+        super(primaryKeyValue, sortKeyValue);
+    }
+
+    public AppVersionEntity(final String primaryKeyValue, final double sortKeyValue) {
         super(primaryKeyValue, sortKeyValue);
     }
 
