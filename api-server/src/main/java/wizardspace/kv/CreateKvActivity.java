@@ -6,6 +6,7 @@ import IxLambdaBackend.auth.AuthStrategy;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
+import org.apache.commons.lang3.StringUtils;
 import wizardspace.user.entity.AccessLevel;
 import wizardspace.user.entity.AccountStatus;
 import wizardspace.user.entity.UserEntity;
@@ -25,15 +26,15 @@ public class CreateKvActivity extends Activity {
         final String userId = getParameterByName(USER_ID).getStringValue();
 
         final long epochMillis = System.currentTimeMillis();
-
-        final String sortKey = id + "_" + userId + "_" + UUID.randomUUID();
+        final String sortKey = this.constructSortKey(id, userId);
 
         final KvEntity kv = new KvEntity(domain, sortKey);
         kv.setAttributeValue(VALUE, value);
-        kv.setAttributeValue(USER_ID, userId);
+
+        if (StringUtils.isNotBlank(userId)) kv.setAttributeValue(USER_ID, userId);
+        
         kv.setNumberAttributeValue(CREATION_EPOCH, epochMillis);
         kv.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
-        kv.setAttributeValue(LAST_UPDATED_BY, userId);
 
         kv.create();
 
@@ -55,5 +56,19 @@ public class CreateKvActivity extends Activity {
     public List<AuthStrategy> getAuthStrategies() {
         // add captcha validation
         return null;
+    }
+
+    private String constructSortKey(final String id, final String userId) {
+        String sortKey = "";
+
+        if (StringUtils.isNotBlank(id))
+            sortKey += id + "_";
+
+        if (StringUtils.isNotBlank(userId))
+            sortKey += userId + "_";
+
+        sortKey += UUID.randomUUID();
+
+        return sortKey;
     }
 }
