@@ -27,7 +27,8 @@ public class CreateUserActivity extends Activity {
         final long epochMillis = System.currentTimeMillis();
 
         final UserEntity user = new UserEntity(email);
-        user.setAttributeValue(USER_ID, UUID.randomUUID().toString());
+        final String userId = UUID.randomUUID().toString();
+        user.setAttributeValue(USER_ID, userId);
         user.setAttributeValue(PASSWORD, password);
         user.setAttributeValue(FNAME, fname);
         user.setAttributeValue(LNAME, lname);
@@ -35,7 +36,7 @@ public class CreateUserActivity extends Activity {
         user.setAttributeValue(ACCOUNT_STATUS, AccountStatus.ACTIVE.toString());
         user.setNumberAttributeValue(CREATION_EPOCH, epochMillis);
         user.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
-        user.setNumberAttributeValue(LAST_UPDATED_BY, epochMillis);
+        user.setAttributeValue(LAST_UPDATED_BY, userId);
 
         user.create();
 

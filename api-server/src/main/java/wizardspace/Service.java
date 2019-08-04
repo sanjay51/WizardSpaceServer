@@ -7,6 +7,8 @@ import IxLambdaBackend.annotation.POST;
 import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
 import wizardspace.app.CreateAppActivity;
+import wizardspace.kv.CreateKvActivity;
+import wizardspace.kv.KvEntity;
 import wizardspace.session.CreateSessionActivity;
 import wizardspace.user.CreateUserActivity;
 import wizardspace.user.GetUserByIdActivity;
@@ -43,6 +45,12 @@ public class Service extends LambdaRestService {
     @POST(path="/apps")
     public Activity createAppActivity() {
         return new CreateAppActivity();
+    }
+
+    /** Key Value ROUTES */
+    @POST(path="/kv")
+    public Activity createKeyValue() {
+        return new CreateKvActivity();
     }
 
     /** OTHER TEST ROUTES */

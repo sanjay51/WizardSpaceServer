@@ -20,5 +20,11 @@ public class Constants {
     public static String LAST_UPDATED_EPOCH = "lastUpdatedEpoch";
     public static String LAST_UPDATED_BY = "lastUpdatedBy";
 
-
+    // KV related
+    public static String TABLE_KV = "wz-kv";
+    public static String DOMAIN = "domain";
+    public static String WZ_DOMAIN = "wzdomain";
+    public static String ID = "id";
+    public static String WZ_KEY = "wzkey";
+    public static String VALUE = "value";
 }
