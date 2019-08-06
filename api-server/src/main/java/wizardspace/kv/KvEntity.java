@@ -15,7 +15,6 @@ import static IxLambdaBackend.storage.schema.AccessType.*;
 import static wizardspace.Constants.*;
 
 public class KvEntity extends DDBEntity<KvEntity> {
-    private AmazonDynamoDB ddb;
 
     public KvEntity(final String primaryKeyValue, final String sortKeyValue) {
         super(primaryKeyValue, sortKeyValue);

@@ -27,4 +27,5 @@ public class Constants {
     public static String ID = "id";
     public static String WZ_KEY = "wzkey";
     public static String VALUE = "value";
+    public static String KEY = "key";
 }

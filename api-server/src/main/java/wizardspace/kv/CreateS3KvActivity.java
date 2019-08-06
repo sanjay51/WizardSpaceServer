@@ -4,45 +4,34 @@ import IxLambdaBackend.activity.Activity;
 import IxLambdaBackend.activity.Parameter;
 import IxLambdaBackend.auth.AuthStrategy;
 import IxLambdaBackend.auth.Authentication;
-import IxLambdaBackend.auth.authorization.Authorization;
-import IxLambdaBackend.auth.authorization.policy.AllowSelfPolicy;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import org.apache.commons.lang3.StringUtils;
 import wizardspace.user.Auth;
-import wizardspace.user.entity.AccessLevel;
-import wizardspace.user.entity.AccountStatus;
-import wizardspace.user.entity.UserEntity;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static wizardspace.Constants.*;
 
-public class CreateKvActivity extends Activity {
+public class CreateS3KvActivity extends Activity {
     @Override
     protected Response enact() throws Exception {
         final String domain = getParameterByName(DOMAIN).getStringValue();
-        final String value = getParameterByName(VALUE).getStringValue();
         final String key = getParameterByName(KEY).getStringValue();
-        final String userId = getParameterByName(USER_ID).getStringValue();
+        final String value = getParameterByName(VALUE).getStringValue();
 
-        final long epochMillis = System.currentTimeMillis();
-        final String sortKey = this.constructSortKey(key, userId);
-
-        final KvEntity kv = new KvEntity(domain, sortKey);
-        kv.setAttributeValue(VALUE, value);
-
-        if (StringUtils.isNotBlank(userId)) kv.setAttributeValue(USER_ID, userId);
-
-        kv.setNumberAttributeValue(CREATION_EPOCH, epochMillis);
-        kv.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
+        final S3KvEntity kv = new S3KvEntity(domain + "_" + key, value);
 
         kv.create();
 
-        return new Response(kv.getAsKeyValueObject());
+        final Map<String, Object> entity = new HashMap<>();
+
+        entity.put("domain", domain);
+        entity.put("key", key);
+        entity.put("value", value);
+
+        return new Response(entity);
     }
 
     @Override
@@ -67,19 +56,5 @@ public class CreateKvActivity extends Activity {
         }
 
         return null;
-    }
-
-    private String constructSortKey(final String key, final String userId) {
-        String sortKey = "";
-
-        if (StringUtils.isNotBlank(key))
-            sortKey += key + "_";
-
-        if (StringUtils.isNotBlank(userId))
-            sortKey += userId + "_";
-
-        sortKey += UUID.randomUUID();
-
-        return sortKey;
     }
 }

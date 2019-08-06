@@ -8,6 +8,7 @@ import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
 import wizardspace.app.CreateAppActivity;
 import wizardspace.kv.CreateKvActivity;
+import wizardspace.kv.CreateS3KvActivity;
 import wizardspace.kv.KvEntity;
 import wizardspace.session.CreateSessionActivity;
 import wizardspace.user.CreateUserActivity;
@@ -33,27 +34,35 @@ public class Service extends LambdaRestService {
         return new UpdateUserActivity();
     }
 
-    /** SESSION ROUTES */
+    /******************** SESSION ROUTES *********************/
 
     @POST(path="/sessions")
     public Activity createSessionActivity() {
         return new CreateSessionActivity();
     }
 
-    /** APP ROUTES */
+    /******************** APP ROUTES *********************/
 
     @POST(path="/apps")
     public Activity createAppActivity() {
         return new CreateAppActivity();
     }
 
-    /** Key Value ROUTES */
+    /******************** Key Value ROUTES *********************/
+
     @POST(path="/kv")
     public Activity createKeyValue() {
         return new CreateKvActivity();
     }
 
-    /** OTHER TEST ROUTES */
+    /******************** Big Key Value (S3 based) ROUTES *********************/
+
+    @POST(path="/big-kv")
+    public Activity createBigKeyValue() {
+        return new CreateS3KvActivity();
+    }
+
+    /******************** OTHER TEST ROUTES *********************/
 
     @GET(path="/hello")
     public String hello() {
