@@ -10,26 +10,28 @@ import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import org.apache.commons.lang3.StringUtils;
 import wizardspace.user.Auth;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static wizardspace.Constants.*;
 
-public class CreateS3KvActivity extends Activity {
+public class GetS3KvActivity extends Activity {
     @Override
     protected Response enact() throws Exception {
         final String domain = getParameterByName(DOMAIN).getStringValue();
         final String key = getParameterByName(KEY).getStringValue();
-        final String value = getParameterByName(VALUE).getStringValue();
 
-        final S3KvEntity kv = new S3KvEntity(domain + "_" + key, value);
+        final S3KvEntity kv = new S3KvEntity(domain + "_" + key);
 
-        kv.create();
+        kv.read();
 
         final Map<String, Object> entity = new HashMap<>();
 
         entity.put("domain", domain);
         entity.put("key", key);
-        entity.put("value", value);
+        entity.put("value", kv.getValue());
 
         return new Response(entity);
     }
@@ -40,7 +42,6 @@ public class CreateS3KvActivity extends Activity {
         return Arrays.asList(
                 new Parameter<String>(DOMAIN, validators),
                 new Parameter<String>(KEY, validators),
-                new Parameter<String>(VALUE, validators),
                 new Parameter<String>(USER_ID, null),
                 new Parameter<String>(AUTH_ID, null)
         );

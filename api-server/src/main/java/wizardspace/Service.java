@@ -8,8 +8,8 @@ import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
 import wizardspace.app.CreateAppActivity;
 import wizardspace.kv.CreateKvActivity;
-import wizardspace.kv.CreateS3KvActivity;
-import wizardspace.kv.KvEntity;
+import wizardspace.kv.GetS3KvActivity;
+import wizardspace.kv.SetS3KvActivity;
 import wizardspace.session.CreateSessionActivity;
 import wizardspace.user.CreateUserActivity;
 import wizardspace.user.GetUserByIdActivity;
@@ -58,8 +58,13 @@ public class Service extends LambdaRestService {
     /******************** Big Key Value (S3 based) ROUTES *********************/
 
     @POST(path="/big-kv")
-    public Activity createBigKeyValue() {
-        return new CreateS3KvActivity();
+    public Activity setBigKeyValue() {
+        return new SetS3KvActivity();
+    }
+
+    @GET(path="/big-kv")
+    public Activity getBigKeyValue() {
+        return new GetS3KvActivity();
     }
 
     /******************** OTHER TEST ROUTES *********************/
