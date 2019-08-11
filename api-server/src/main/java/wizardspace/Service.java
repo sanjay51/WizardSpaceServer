@@ -9,6 +9,7 @@ import IxLambdaBackend.service.LambdaRestService;
 import wizardspace.app.CreateAppActivity;
 import wizardspace.app.GetAppByIdActivity;
 import wizardspace.app.GetAppsByDevActivity;
+import wizardspace.app.UpdateAppActivity;
 import wizardspace.kv.CreateKvActivity;
 import wizardspace.kv.GetS3KvActivity;
 import wizardspace.kv.SetS3KvActivity;
@@ -19,7 +20,7 @@ import wizardspace.user.UpdateUserActivity;
 
 public class Service extends LambdaRestService {
 
-    /** USER ROUTES */
+    /******************** USER ROUTES *********************/
 
     @POST(path="/users")
     public Activity createUserActivity() {
@@ -50,20 +51,23 @@ public class Service extends LambdaRestService {
         return new CreateAppActivity();
     }
 
+    @PATCH(path="/apps/{appId}")
+    public Activity updateAppActivity() { return new UpdateAppActivity(); }
+
     @GET(path="/apps")
-    public Activity GetAppsByDevActivity() { return new GetAppsByDevActivity(); }
+    public Activity getAppsByDevActivity() { return new GetAppsByDevActivity(); }
 
     @GET(path="/apps/{appId}")
-    public Activity GetAppByIdActivity() { return new GetAppByIdActivity(); }
+    public Activity getAppByIdActivity() { return new GetAppByIdActivity(); }
 
-    /******************** Key Value ROUTES *********************/
+    /******************** KEY-VALUE ROUTES *********************/
 
     @POST(path="/kv")
     public Activity createKeyValue() {
         return new CreateKvActivity();
     }
 
-    /******************** Big Key Value (S3 based) ROUTES *********************/
+    /******************** BIG KEY-VALUE (S3 based) ROUTES *********************/
 
     @POST(path="/big-kv")
     public Activity setBigKeyValue() {
