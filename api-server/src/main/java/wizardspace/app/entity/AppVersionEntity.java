@@ -21,7 +21,8 @@ public class AppVersionEntity extends DDBEntity<AppVersionEntity> {
         super(primaryKeyValue, sortKeyValue);
     }
 
-    public AppVersionEntity(final String primaryKeyValue, final double sortKeyValue) {
+    public
+    AppVersionEntity(final String primaryKeyValue, final double sortKeyValue) {
         super(primaryKeyValue, sortKeyValue);
     }
 

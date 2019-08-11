@@ -26,14 +26,15 @@ public class CreateAppActivity extends Activity {
         final String userId = getParameterByName(USER_ID).getStringValue();
         final String name = getParameterByName(NAME).getStringValue();
         final String appId = UUID.randomUUID().toString();
-        final double draftVersion = 1.0;
+        final long epochMillis = System.currentTimeMillis();
+        final long liveVersion = 0;
 
         // Create App
-        final AppEntity app = constructAppEntity(appId, draftVersion, userId);
+        final AppEntity app = constructAppEntity(appId, userId, epochMillis, liveVersion);
         app.create();
 
         // Create App Version
-        final AppVersionEntity appVersion = new AppVersionEntity(appId, draftVersion);
+        final AppVersionEntity appVersion = new AppVersionEntity(appId, liveVersion);
         if (StringUtils.isNotBlank(userId)) appVersion.setAttributeValue(DEV_ID, userId);
         appVersion.setAttributeValue(NAME, name);
         appVersion.create();
@@ -41,9 +42,8 @@ public class CreateAppActivity extends Activity {
         return new Response(app.getAsKeyValueObject());
     }
 
-    private AppEntity constructAppEntity(final String appId, final double draftVersion, final String userId) {
-        final long epochMillis = System.currentTimeMillis();
-
+    private AppEntity constructAppEntity(final String appId, final String userId,
+                                         final long epochMillis, final long liveVersion) {
         final AppEntity app = new AppEntity(appId);
 
         if (StringUtils.isNotBlank(userId)) {
@@ -51,8 +51,8 @@ public class CreateAppActivity extends Activity {
             app.setAttributeValue(LAST_UPDATED_BY, userId);
         }
 
-        app.setNumberAttributeValue(LIVE_VERSION, 0);
-        app.setNumberAttributeValue(DRAFT_VERSION, draftVersion);
+        app.setNumberAttributeValue(LIVE_VERSION, liveVersion);
+        app.setNumberAttributeValue(DRAFT_VERSION, epochMillis);
         app.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
         app.setNumberAttributeValue(CREATION_EPOCH, epochMillis);
 

@@ -7,6 +7,7 @@ import IxLambdaBackend.annotation.POST;
 import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
 import wizardspace.app.CreateAppActivity;
+import wizardspace.app.GetAppsByDevActivity;
 import wizardspace.kv.CreateKvActivity;
 import wizardspace.kv.GetS3KvActivity;
 import wizardspace.kv.SetS3KvActivity;
@@ -47,6 +48,9 @@ public class Service extends LambdaRestService {
     public Activity createAppActivity() {
         return new CreateAppActivity();
     }
+
+    @GET(path="/apps")
+    public Activity GetAppsByDevActivity() { return new GetAppsByDevActivity(); }
 
     /******************** Key Value ROUTES *********************/
 

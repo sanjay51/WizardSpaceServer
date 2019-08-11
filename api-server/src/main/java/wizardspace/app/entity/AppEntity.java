@@ -25,7 +25,7 @@ public class AppEntity extends DDBEntity<AppEntity> {
         super(gsiPrimaryKeyValue, gsiSortKeyValue, GSI_DEV_APP_ID);
     }
 
-    public AppEntity newInstanceFromGSI(final String gsiPrimaryKeyValue, final String gsiSortKeyValue) {
+    public static AppEntity newInstanceFromGSI(final String gsiPrimaryKeyValue, final String gsiSortKeyValue) {
         return new AppEntity(gsiPrimaryKeyValue, gsiSortKeyValue);
     }
 
@@ -38,7 +38,7 @@ public class AppEntity extends DDBEntity<AppEntity> {
             put(DESCRIPTION, new Types(ValueType.STRING));
             put(LOGO, new Types(ValueType.STRING));
             put(LIVE_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.RESTRICTED));
-            put(DRAFT_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.RESTRICTED));
+            put(DRAFT_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(PUBLIC_VERSION, new Types(ValueType.STRING));
             put(LAST_UPDATED_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(LAST_UPDATED_BY, new Types(ValueType.STRING).withAccess(AccessType.RESTRICTED));
