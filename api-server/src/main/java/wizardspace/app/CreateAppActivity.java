@@ -29,8 +29,10 @@ public class CreateAppActivity extends Activity {
         final long epochMillis = System.currentTimeMillis();
         final long liveVersion = 0;
 
+        final String devId = StringUtils.isBlank(userId) ? "temp-" + UUID.randomUUID() : userId;
+
         // Create App
-        final AppEntity app = constructAppEntity(appId, userId, epochMillis, liveVersion);
+        final AppEntity app = constructAppEntity(appId, devId, epochMillis, liveVersion);
         app.create();
 
         // Create App Version
@@ -42,13 +44,13 @@ public class CreateAppActivity extends Activity {
         return new Response(app.getAsKeyValueObject());
     }
 
-    private AppEntity constructAppEntity(final String appId, final String userId,
+    private AppEntity constructAppEntity(final String appId, final String devId,
                                          final long epochMillis, final long liveVersion) {
         final AppEntity app = new AppEntity(appId);
 
-        if (StringUtils.isNotBlank(userId)) {
-            app.setAttributeValue(DEV_ID, userId);
-            app.setAttributeValue(LAST_UPDATED_BY, userId);
+        if (StringUtils.isNotBlank(devId)) {
+            app.setAttributeValue(DEV_ID, devId);
+            app.setAttributeValue(LAST_UPDATED_BY, devId);
         }
 
         app.setNumberAttributeValue(LIVE_VERSION, liveVersion);
