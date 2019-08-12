@@ -5,6 +5,7 @@ import IxLambdaBackend.activity.Parameter;
 import IxLambdaBackend.auth.AuthStrategy;
 import IxLambdaBackend.auth.Authentication;
 import IxLambdaBackend.response.Response;
+import IxLambdaBackend.storage.DDBEntity;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import org.apache.commons.lang3.StringUtils;
@@ -12,10 +13,7 @@ import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppVersionEntity;
 import wizardspace.user.Auth;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.EMPTY_LIST;
@@ -28,10 +26,12 @@ public class GetAppsByDevActivity extends Activity {
         final String devId = getParameterByName(USER_ID).getStringValue();
 
         final AppEntity appEntity = AppEntity.newInstanceFromGSI(devId, null);
-        List<AppEntity> entities = appEntity.getAllByGSI(devId, GSI_DEV_APP_ID);
+        List<DDBEntity> entities = appEntity.getAllByGSI(devId, GSI_DEV_APP_ID);
 
-        List<Map<String, Object>> responseEntities =
-                entities.stream().map(e -> e.getAsKeyValueObject()).collect(Collectors.toList());
+        List<Map<String, Object>> responseEntities = new ArrayList<>();
+        for (final DDBEntity entity: entities) {
+            responseEntities.add(entity.getAsKeyValueObject());
+        }
 
         return new Response(responseEntities);
     }
