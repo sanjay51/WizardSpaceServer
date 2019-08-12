@@ -1,5 +1,6 @@
 package wizardspace;
 
+import wizardspace.app.UpdateAppActivity;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppVersionEntity;
 
@@ -25,6 +26,16 @@ public class Test {
     public void testAppEntityRead() throws Exception {
         final AppEntity appEntity = new AppEntity("cf95ae03-7774-4a22-a4d5-f90615e76a4a");
         //appEntity.read();
+        System.out.println("hello");
+    }
+
+    @org.junit.Test
+    public void testAppEntityUpdate() throws Exception {
+        final AppEntity appEntity = new AppEntity("926bf4a9-1d67-4b0a-9d78-e23836e12d07");
+        //appEntity.read();
+
+        appEntity.setNumberAttributeValue(DRAFT_VERSION, 234);
+        //appEntity.update();
         System.out.println("hello");
     }
 }

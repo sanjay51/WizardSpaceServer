@@ -34,20 +34,53 @@ public class UpdateAppActivity extends Activity {
         final AppEntity app = new AppEntity(appId);
         app.read();
 
-        final String currentDevId = (String) app.getAttribute(DEV_ID).get();
+        String currentDevId = (String) app.getAttribute(DEV_ID).get();
+        final String newDevId = authorizeAndGetNewDevId(currentDevId, userId);
 
-        if (StringUtils.isNotBlank(currentDevId) && !StringUtils.equals(currentDevId, userId)) {
-            throw new NotAuthorizedException("Not authorized to perform this action");
-        }
-
-        app.setAttributeValue(DEV_ID, userId);
-        app.setAttributeValue(DESCRIPTION, description);
+        app.setAttributeValue(DEV_ID, newDevId);
+        if (StringUtils.isNotBlank(description)) app.setAttributeValue(DESCRIPTION, description);
+        if (StringUtils.isNotBlank(userId)) app.setAttributeValue(LAST_UPDATED_BY, userId);
         app.setNumberAttributeValue(DRAFT_VERSION, epochMillis);
         app.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
-        app.setAttributeValue(LAST_UPDATED_BY, userId);
         app.update();
 
         return new Response(app.getAsKeyValueObject());
+    }
+
+    private String authorizeAndGetNewDevId(final String currentDevId, final String userId) {
+        boolean isCurrentDevIdTemporary = StringUtils.startsWith(currentDevId, "temp-");
+
+        /*
+        currentDevId and userId same =>
+
+                           userId
+                          T   N   P
+                       T  D   x   x
+         currentDevId  N  x   CN  x
+                       P  x   x   D
+
+        currentDevId and userId different =>
+
+                           userId
+                          T   N   P
+                       T  U   D   U
+         currentDevId  N  U   x   U
+                       P  NA  NA  NA
+
+         T = Temporary, N = Null, P = Permanent
+         U = userId, D = DevId, NA = NotAuthorized, CN = Create New, x = Impossible case
+         */
+        if (StringUtils.equals(userId, currentDevId)) {
+            if (currentDevId == null) return "temp-" + UUID.randomUUID();
+
+            return currentDevId;
+
+        } else {
+            if (!isCurrentDevIdTemporary) throw new NotAuthorizedException(("Not authorized to perform this action"));
+            if (userId == null) return currentDevId;
+
+            return userId;
+        }
     }
 
     @Override
