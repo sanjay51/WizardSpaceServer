@@ -15,7 +15,6 @@ import com.amazonaws.util.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppNameEntity;
-import wizardspace.app.entity.AppVersionEntity;
 import wizardspace.user.Auth;
 
 import java.util.Arrays;
@@ -31,15 +30,17 @@ import static wizardspace.app.AppConstants.*;
 public class UpdateAppActivity extends Activity {
     @Override
     protected Response enact() throws Exception {
-        final String userId = getParameterByName(USER_ID).getStringValue();
-        final String appId = getParameterByName(APP_ID).getStringValue();
-        final String description = getParameterByName(DESCRIPTION).getStringValue();
-        String name = getParameterByName(NAME).getStringValue();
-        final String category = getParameterByName(CATEGORY).getStringValue();
-        final String logo = getParameterByName(LOGO).getStringValue();
+        final String userId = getStringParameterByName(USER_ID);
+        final String appId = getStringParameterByName(APP_ID);
+        final String description = getStringParameterByName(DESCRIPTION);
+        String name = getStringParameterByName(NAME);
+        final String category = getStringParameterByName(CATEGORY);
+        final String logo = getStringParameterByName(LOGO);
 
-        final List<String> images = (List<String>) getParameterByName(IMAGES).getValue();
-        final Set<String> imageSet = images.stream().filter(image -> StringUtils.isNotBlank(image)).collect(Collectors.toSet());
+        final Parameter<List<String>> images = getParameterByName(IMAGES);
+        Set<String> imageSet = null;
+        if (images != null)
+            imageSet = images.getValue().stream().filter(StringUtils::isNotBlank).collect(Collectors.toSet());
 
         final long epochMillis = System.currentTimeMillis();
 
@@ -78,7 +79,7 @@ public class UpdateAppActivity extends Activity {
         if (StringUtils.isNotBlank(description)) app.setAttributeValue(DESCRIPTION, description);
         if (StringUtils.isNotBlank(category)) app.setAttributeValue(CATEGORY, category);
         if (StringUtils.isNotBlank(logo)) app.setAttributeValue(LOGO, logo);
-        if (!CollectionUtils.isNullOrEmpty(images)) app.setAttribute(IMAGES, new Attribute(IMAGES, new StringSetValue(imageSet)));
+        if (!CollectionUtils.isNullOrEmpty(imageSet)) app.setAttribute(IMAGES, new Attribute(IMAGES, new StringSetValue(imageSet)));
 
         app.setNumberAttributeValue(DRAFT_VERSION, epochMillis);
         app.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
@@ -139,8 +140,8 @@ public class UpdateAppActivity extends Activity {
 
     @Override
     public List<AuthStrategy> getAuthStrategies() {
-        final String userId = this.getParameterByName(USER_ID).getStringValue();
-        final String authId = this.getParameterByName(AUTH_ID).getStringValue();
+        final String userId = this.getStringParameterByName(USER_ID);
+        final String authId = this.getStringParameterByName(AUTH_ID);
 
         // No auth needed if anonymous user
         if (StringUtils.isBlank(userId) && StringUtils.isBlank(authId)) {
