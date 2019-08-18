@@ -7,7 +7,7 @@ public class AppConstants {
 
     public static String APP_ID = "appId";
     public static String DEV_ID = "devId";
-    public static String NAME = "name";
+    public static String APP_NAME = "appName";
     public static String DESCRIPTION = "description";
     public static String LOGO = "logo";
     public static String LIVE_VERSION = "liveVersion";

@@ -24,7 +24,7 @@ public class CreateAppActivity extends Activity {
     @Override
     protected Response enact() throws Exception {
         final String userId = getParameterByName(USER_ID).getStringValue();
-        final String name = getParameterByName(NAME).getStringValue();
+        final String name = getParameterByName(APP_NAME).getStringValue();
         final String appId = UUID.randomUUID().toString();
         final long epochMillis = System.currentTimeMillis();
         final long liveVersion = 0;
@@ -38,7 +38,7 @@ public class CreateAppActivity extends Activity {
         // Create App Version
         final AppVersionEntity appVersion = new AppVersionEntity(appId, liveVersion);
         if (StringUtils.isNotBlank(userId)) appVersion.setAttributeValue(DEV_ID, userId);
-        appVersion.setAttributeValue(NAME, name);
+        appVersion.setAttributeValue(APP_NAME, name);
         appVersion.create();
 
         return new Response(app.getAsKeyValueObject());
@@ -68,7 +68,7 @@ public class CreateAppActivity extends Activity {
         return Arrays.asList(
                 new Parameter(USER_ID, EMPTY_LIST),
                 new Parameter(AUTH_ID, EMPTY_LIST),
-                new Parameter(NAME, validators)
+                new Parameter(APP_NAME, validators)
         );
     }
 

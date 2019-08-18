@@ -12,7 +12,7 @@ public class Test {
     @org.junit.Test
     public void test() throws Exception {
         final AppVersionEntity appVersion = new AppVersionEntity("asdf", 1.0);
-        appVersion.setAttributeValue(NAME, "asdf");
+        appVersion.setAttributeValue(APP_NAME, "asdf");
     }
 
     @org.junit.Test

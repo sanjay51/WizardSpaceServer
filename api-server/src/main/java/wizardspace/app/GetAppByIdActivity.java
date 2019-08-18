@@ -33,7 +33,7 @@ public class GetAppByIdActivity extends Activity {
 
         final String appDevId = (String) appEntity.getAttribute(DEV_ID).get();
 
-        if (StringUtils.isBlank(appDevId) || StringUtils.equals(requesterId, appDevId)) {
+        if (StringUtils.isBlank(appDevId) || StringUtils.startsWith(appDevId, "temp-") || StringUtils.equals(requesterId, appDevId)) {
             return new Response(appEntity.getAsKeyValueObject());
         }
 

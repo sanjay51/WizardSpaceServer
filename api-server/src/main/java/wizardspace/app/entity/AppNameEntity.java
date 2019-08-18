@@ -21,7 +21,7 @@ public class AppNameEntity extends DDBEntity<AppNameEntity> {
     @Override
     public Schema createSchema() {
         final Map<String, Types> attributes = new HashMap<String, Types>() {{
-            put(NAME, new Types(ValueType.STRING, IndexType.PRIMARY_KEY));
+            put(APP_NAME, new Types(ValueType.STRING, IndexType.PRIMARY_KEY));
             put(APP_ID, new Types(ValueType.STRING));
         }};
 

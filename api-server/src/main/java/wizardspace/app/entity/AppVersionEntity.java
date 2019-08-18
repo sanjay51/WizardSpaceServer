@@ -32,7 +32,7 @@ public class AppVersionEntity extends DDBEntity<AppVersionEntity> {
             put(APP_ID, new Types(ValueType.STRING, IndexType.PRIMARY_KEY).withAccess(AccessType.READ_ONLY));
             put(VERSION_ID, new Types(ValueType.STRING, IndexType.SORT_KEY).withAccess(AccessType.READ_ONLY));
             put(DEV_ID, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
-            put(NAME, new Types(ValueType.STRING));
+            put(APP_NAME, new Types(ValueType.STRING));
             put(DESCRIPTION, new Types(ValueType.STRING));
             put(PUBLIC_VERSION, new Types(ValueType.STRING));
         }};

@@ -34,7 +34,7 @@ public class AppEntity extends DDBEntity<AppEntity> {
         final Map<String, Types> attributes = new HashMap<String, Types>() {{
             put(APP_ID, new Types(ValueType.STRING, IndexType.PRIMARY_KEY).withAccess(AccessType.READ_ONLY));
             put(DEV_ID, new Types(ValueType.STRING, IndexType.GSI_PRIMARY_KEY).withAccess(AccessType.READ_ONLY));
-            put(NAME, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
+            put(APP_NAME, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
             put(DESCRIPTION, new Types(ValueType.STRING));
             put(LOGO, new Types(ValueType.STRING));
             put(LIVE_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.RESTRICTED));

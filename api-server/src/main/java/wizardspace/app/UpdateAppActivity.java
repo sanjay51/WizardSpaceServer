@@ -33,7 +33,7 @@ public class UpdateAppActivity extends Activity {
         final String userId = getStringParameterByName(USER_ID);
         final String appId = getStringParameterByName(APP_ID);
         final String description = getStringParameterByName(DESCRIPTION);
-        String name = getStringParameterByName(NAME);
+        String name = getStringParameterByName(APP_NAME);
         final String category = getStringParameterByName(CATEGORY);
         final String logo = getStringParameterByName(LOGO);
 
@@ -75,7 +75,7 @@ public class UpdateAppActivity extends Activity {
 
         // Set attributes and update
         app.setAttributeValue(DEV_ID, newDevId);
-        if (StringUtils.isNotBlank(name)) app.setAttributeValue(NAME, name);
+        if (StringUtils.isNotBlank(name)) app.setAttributeValue(APP_NAME, name);
         if (StringUtils.isNotBlank(description)) app.setAttributeValue(DESCRIPTION, description);
         if (StringUtils.isNotBlank(category)) app.setAttributeValue(CATEGORY, category);
         if (StringUtils.isNotBlank(logo)) app.setAttributeValue(LOGO, logo);
@@ -133,8 +133,11 @@ public class UpdateAppActivity extends Activity {
                 new Parameter(USER_ID, EMPTY_LIST),
                 new Parameter(AUTH_ID, EMPTY_LIST),
                 new Parameter(APP_ID, validators),
-                new Parameter(NAME, EMPTY_LIST),
-                new Parameter(DESCRIPTION, EMPTY_LIST)
+                new Parameter(APP_NAME, EMPTY_LIST),
+                new Parameter(DESCRIPTION, EMPTY_LIST),
+                new Parameter(CATEGORY, EMPTY_LIST),
+                new Parameter(LOGO, EMPTY_LIST),
+                new Parameter(IMAGES, EMPTY_LIST)
         );
     }
 
