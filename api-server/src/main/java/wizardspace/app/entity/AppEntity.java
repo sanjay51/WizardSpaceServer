@@ -45,6 +45,7 @@ public class AppEntity extends DDBEntity<AppEntity> {
             put(CREATION_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(CATEGORY, new Types(ValueType.STRING));
             put(IMAGES, new Types(ValueType.STRING_SET));
+            put(VIDEO, new Types(ValueType.STRING));
             put(RATING, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(REVIEW_COUNT, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
         }};

@@ -15,6 +15,7 @@ public class AppConstants {
     public static String PUBLIC_VERSION = "publicVersion";
     public static String CATEGORY = "category";
     public static String IMAGES = "images";
+    public static String VIDEO = "video";
     public static String RATING = "rating";
     public static String REVIEW_COUNT = "reviewCount";
     // public static String LAST_UPDATED_EPOCH = "lastUpdatedEpoch";
