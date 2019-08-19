@@ -17,10 +17,7 @@ import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppNameEntity;
 import wizardspace.user.Auth;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.EMPTY_LIST;
@@ -53,6 +50,7 @@ public class UpdateAppActivity extends Activity {
         final String newDevId = authorizeAndGetNewDevId(currentDevId, userId);
 
         // Check if name is unique
+        boolean isNameTaken = false;
         if (StringUtils.isNotBlank(name)) {
             AppNameEntity appNameEntity = new AppNameEntity(name);
 
@@ -63,6 +61,7 @@ public class UpdateAppActivity extends Activity {
                 if (! StringUtils.equals(appNameEntity.getAttribute(APP_ID).toString(), appId)) {
                     // name is taken
                     name = null;
+                    isNameTaken = true;
                 }
 
                 // if name is taken by the same appId, do nothing
@@ -86,7 +85,10 @@ public class UpdateAppActivity extends Activity {
         if (StringUtils.isNotBlank(userId)) app.setAttributeValue(LAST_UPDATED_BY, userId);
         app.update();
 
-        return new Response(app.getAsKeyValueObject());
+        Map<String, Object> response = app.getAsKeyValueObject();
+        response.put("isNameTaken", isNameTaken);
+
+        return new Response(response);
     }
 
     private String authorizeAndGetNewDevId(final String currentDevId, final String userId) {
