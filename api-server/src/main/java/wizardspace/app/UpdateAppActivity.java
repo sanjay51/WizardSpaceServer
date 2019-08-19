@@ -39,7 +39,7 @@ public class UpdateAppActivity extends Activity {
 
         final Parameter<List<String>> images = getParameterByName(IMAGES);
         Set<String> imageSet = null;
-        if (images != null)
+        if (images != null && images.getValue() != null)
             imageSet = images.getValue().stream().filter(StringUtils::isNotBlank).collect(Collectors.toSet());
 
         final long epochMillis = System.currentTimeMillis();
