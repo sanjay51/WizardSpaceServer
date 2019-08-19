@@ -58,7 +58,7 @@ public class UpdateAppActivity extends Activity {
                 appNameEntity.read();
 
                 // if name is taken by some other appId, don't set it
-                if (! StringUtils.equals(appNameEntity.getAttribute(APP_ID).toString(), appId)) {
+                if (! StringUtils.equals((String) appNameEntity.getAttribute(APP_ID).get(), appId)) {
                     // name is taken
                     name = null;
                     isNameTaken = true;
