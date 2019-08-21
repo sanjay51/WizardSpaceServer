@@ -6,10 +6,7 @@ import IxLambdaBackend.annotation.PATCH;
 import IxLambdaBackend.annotation.POST;
 import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
-import wizardspace.app.CreateAppActivity;
-import wizardspace.app.GetAppByIdActivity;
-import wizardspace.app.GetAppsByDevActivity;
-import wizardspace.app.UpdateAppActivity;
+import wizardspace.app.*;
 import wizardspace.kv.CreateKvActivity;
 import wizardspace.kv.GetS3KvActivity;
 import wizardspace.kv.SetS3KvActivity;
@@ -59,6 +56,17 @@ public class Service extends LambdaRestService {
 
     @GET(path="/apps/{appId}")
     public Activity getAppByIdActivity() { return new GetAppByIdActivity(); }
+
+
+    /******************** APP GROUP ROUTES *********************/
+
+    @GET(path="/app-group/{groupId}")
+    public Activity getAppsByGroupActivity() { return new GetAppsByGroupActivity(); }
+
+    @POST(path="/app-group-entities/")
+    public Activity addAppToGroupActivity() {
+        return new AddAppToGroupActivity();
+    }
 
     /******************** KEY-VALUE ROUTES *********************/
 
