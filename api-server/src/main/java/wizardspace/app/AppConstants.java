@@ -21,7 +21,7 @@ public class AppConstants {
     // public static String LAST_UPDATED_EPOCH = "lastUpdatedEpoch";
     // public static String CREATION_EPOCH = "creationEpoch";
 
-    // APP-VERSION related
+    /* APP-VERSION related */
     public static String TABLE_APP_VERSIONS = "wz-app-versions";
     // public static String APP_ID = "appId";
     public static String VERSION_ID = "versionId";
@@ -30,8 +30,14 @@ public class AppConstants {
     // public static String DESCRIPTION = "description";
     // public static String PUBLIC_VERSION = "publicVersion";
 
-    // APP-NAME related
+    /* APP-NAME related */
     public static String TABLE_APP_NAMES = "wz-app-names";
     // public static String NAME = "name";
     // public static String APP_ID = "appId";
+
+    /* APP-GROUP related */
+    public static String TABLE_APP_GROUP= "wz-app-group";
+    public static String APP_GROUP_ID = "appGroupId";
+    public static String RANK = "rank";
+
 }
