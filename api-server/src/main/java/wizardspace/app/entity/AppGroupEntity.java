@@ -17,6 +17,10 @@ import static wizardspace.app.AppConstants.*;
 
 public class AppGroupEntity extends DDBEntity<AppGroupEntity> {
 
+    public AppGroupEntity(final String primaryKeyValue) {
+        super(primaryKeyValue);
+    }
+
     public AppGroupEntity(final String primaryKeyValue, final double sortKeyValue) {
         super(primaryKeyValue, sortKeyValue);
     }
