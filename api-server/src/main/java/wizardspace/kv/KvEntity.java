@@ -16,6 +16,10 @@ import static wizardspace.Constants.*;
 
 public class KvEntity extends DDBEntity<KvEntity> {
 
+    public KvEntity(final String primaryKeyValue) {
+        super(primaryKeyValue);
+    }
+
     public KvEntity(final String primaryKeyValue, final String sortKeyValue) {
         super(primaryKeyValue, sortKeyValue);
     }

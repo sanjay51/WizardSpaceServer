@@ -10,6 +10,7 @@ import IxLambdaBackend.response.Response;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import org.apache.commons.lang3.StringUtils;
+import wizardspace.common.KVDomainValidator;
 import wizardspace.user.Auth;
 import wizardspace.user.entity.AccessLevel;
 import wizardspace.user.entity.AccountStatus;
@@ -49,7 +50,7 @@ public class CreateKvActivity extends Activity {
     protected List<Parameter> getParameters() {
         final List<ParamValidator> validators = Arrays.asList(new StringNotBlankValidator());
         return Arrays.asList(
-                new Parameter<String>(DOMAIN, validators),
+                new Parameter<String>(DOMAIN, Arrays.asList(new StringNotBlankValidator(), new KVDomainValidator())),
                 new Parameter<String>(KEY, validators),
                 new Parameter<String>(VALUE, validators),
                 new Parameter<String>(USER_ID, null),
