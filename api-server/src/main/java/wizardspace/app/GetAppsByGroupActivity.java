@@ -6,6 +6,7 @@ import IxLambdaBackend.auth.AuthStrategy;
 import IxLambdaBackend.auth.Authentication;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.storage.DDBEntity;
+import IxLambdaBackend.storage.Entity;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import wizardspace.app.entity.AppEntity;
@@ -24,15 +25,15 @@ import static wizardspace.app.AppConstants.GSI_DEV_APP_ID;
 
 public class GetAppsByGroupActivity extends Activity {
     @Override
-    protected Response enact() {
+    protected Response enact() throws Exception {
         final String groupId = getStringParameterByName(APP_GROUP_ID);
 
         final AppGroupEntity appGroupEntity = new AppGroupEntity(groupId);
-        final List<AppGroupEntity> entities = appGroupEntity.getAll();
+        final List<Entity> entities = appGroupEntity.getAll();
 
         List<Map<String, Object>> responseEntities = new ArrayList<>();
-        for (final AppGroupEntity entity: entities) {
-            responseEntities.add(entity.getAsKeyValueObject());
+        for (final Entity entity: entities) {
+            responseEntities.add(((DDBEntity) entity).getAsKeyValueObject());
         }
 
         return new Response(responseEntities);

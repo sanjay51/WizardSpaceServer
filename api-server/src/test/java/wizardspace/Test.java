@@ -1,8 +1,11 @@
 package wizardspace;
 
+import IxLambdaBackend.storage.DDBEntity;
+import IxLambdaBackend.storage.Entity;
 import wizardspace.app.UpdateAppActivity;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppVersionEntity;
+import wizardspace.kv.KvEntity;
 
 import java.util.List;
 
@@ -37,5 +40,13 @@ public class Test {
         appEntity.setNumberAttributeValue(DRAFT_VERSION, 234);
         //appEntity.update();
         System.out.println("hello");
+    }
+
+    @org.junit.Test
+    public void testGetAll() throws Exception {
+        final KvEntity kvEntity = new KvEntity("FEATURE_REQUESTS");
+        //List<Entity> entityList = kvEntity.getAll();
+        //DDBEntity entity = (DDBEntity) entityList.get(0);
+        //System.out.print("FEATURE_REQUESTS" + entity.getAsKeyValueObject());
     }
 }

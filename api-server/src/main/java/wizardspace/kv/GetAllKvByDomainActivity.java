@@ -6,10 +6,10 @@ import IxLambdaBackend.auth.AuthStrategy;
 import IxLambdaBackend.auth.Authentication;
 import IxLambdaBackend.auth.authorization.Authorization;
 import IxLambdaBackend.response.Response;
+import IxLambdaBackend.storage.DDBEntity;
+import IxLambdaBackend.storage.Entity;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
-import org.apache.commons.lang3.StringUtils;
-import wizardspace.common.KVDomain;
 import wizardspace.common.KVDomainValidator;
 import wizardspace.common.MinUserAccessLevelAuthorizationPolicy;
 import wizardspace.user.Auth;
@@ -21,14 +21,14 @@ import static wizardspace.Constants.*;
 
 public class GetAllKvByDomainActivity extends Activity {
     @Override
-    protected Response enact() {
+    protected Response enact() throws Exception {
         final String domain = getParameterByName(DOMAIN).getStringValue();
         final KvEntity kv = new KvEntity(domain);
-        final List<KvEntity> kvEntities = kv.getAll();
+        final List<Entity> kvEntities = kv.getAll();
 
         final List<Map<String, Object>> responseEntities = new ArrayList<>();
-        for (final KvEntity entity: kvEntities) {
-            responseEntities.add(entity.getAsKeyValueObject());
+        for (final Entity entity: kvEntities) {
+            responseEntities.add(((DDBEntity) entity).getAsKeyValueObject());
         }
 
         return new Response(responseEntities);
