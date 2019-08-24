@@ -1,15 +1,10 @@
 package wizardspace;
 
-import IxLambdaBackend.storage.DDBEntity;
-import IxLambdaBackend.storage.Entity;
-import wizardspace.app.UpdateAppActivity;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppVersionEntity;
 import wizardspace.kv.KvEntity;
 
-import java.util.List;
-
-import static wizardspace.app.AppConstants.*;
+import static wizardspace.app.common.AppConstants.*;
 
 public class Test {
     @org.junit.Test

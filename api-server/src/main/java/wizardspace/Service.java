@@ -8,6 +8,7 @@ import IxLambdaBackend.request.Request;
 import IxLambdaBackend.service.LambdaRestService;
 import wizardspace.app.*;
 import wizardspace.kv.CreateKvActivity;
+import wizardspace.kv.GetAllKvByDomainActivity;
 import wizardspace.kv.GetS3KvActivity;
 import wizardspace.kv.SetS3KvActivity;
 import wizardspace.session.CreateSessionActivity;
@@ -69,6 +70,11 @@ public class Service extends LambdaRestService {
     }
 
     /******************** KEY-VALUE ROUTES *********************/
+
+    @GET(path="/kv")
+    public Activity getAllKvByDomain() {
+        return new GetAllKvByDomainActivity();
+    }
 
     @POST(path="/kv")
     public Activity createKeyValue() {

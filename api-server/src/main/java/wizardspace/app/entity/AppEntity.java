@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static wizardspace.Constants.*;
-import static wizardspace.app.AppConstants.*;
+import static wizardspace.app.common.AppConstants.*;
 
 public class AppEntity extends DDBEntity<AppEntity> {
 

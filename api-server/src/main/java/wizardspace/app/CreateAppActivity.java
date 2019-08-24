@@ -18,7 +18,7 @@ import java.util.UUID;
 
 import static java.util.Collections.EMPTY_LIST;
 import static wizardspace.Constants.*;
-import static wizardspace.app.AppConstants.*;
+import static wizardspace.app.common.AppConstants.*;
 
 public class CreateAppActivity extends Activity {
     @Override

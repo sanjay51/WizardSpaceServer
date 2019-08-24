@@ -5,28 +5,24 @@ import IxLambdaBackend.activity.Parameter;
 import IxLambdaBackend.auth.AuthStrategy;
 import IxLambdaBackend.auth.Authentication;
 import IxLambdaBackend.auth.authorization.Authorization;
-import IxLambdaBackend.auth.authorization.policy.Policy;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import org.apache.commons.lang3.StringUtils;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppGroupEntity;
-import wizardspace.app.entity.AppVersionEntity;
 import wizardspace.common.MinUserAccessLevelAuthorizationPolicy;
 import wizardspace.user.Auth;
 import wizardspace.user.entity.AccessLevel;
-import wizardspace.user.entity.UserEntity;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import IxLambdaBackend.storage.attribute.Attribute;
-import static java.util.Collections.EMPTY_LIST;
+
 import static wizardspace.Constants.*;
-import static wizardspace.app.AppConstants.*;
+import static wizardspace.app.common.AppConstants.*;
 
 public class AddAppToGroupActivity extends Activity {
     @Override

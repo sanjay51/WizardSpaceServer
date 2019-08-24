@@ -14,13 +14,11 @@ import wizardspace.user.Auth;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.Collections.EMPTY_LIST;
 import static wizardspace.Constants.AUTH_ID;
 import static wizardspace.Constants.USER_ID;
-import static wizardspace.app.AppConstants.*;
+import static wizardspace.app.common.AppConstants.*;
 
 public class GetAppByIdActivity extends Activity {
     @Override

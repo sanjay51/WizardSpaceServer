@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Collections.EMPTY_LIST;
 import static wizardspace.Constants.*;
-import static wizardspace.app.AppConstants.*;
+import static wizardspace.app.common.AppConstants.*;
 
 public class UpdateAppActivity extends Activity {
     @Override

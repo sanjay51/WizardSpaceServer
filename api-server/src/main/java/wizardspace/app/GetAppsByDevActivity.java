@@ -8,17 +8,13 @@ import IxLambdaBackend.response.Response;
 import IxLambdaBackend.storage.DDBEntity;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
-import org.apache.commons.lang3.StringUtils;
 import wizardspace.app.entity.AppEntity;
-import wizardspace.app.entity.AppVersionEntity;
 import wizardspace.user.Auth;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-import static java.util.Collections.EMPTY_LIST;
 import static wizardspace.Constants.*;
-import static wizardspace.app.AppConstants.*;
+import static wizardspace.app.common.AppConstants.*;
 
 public class GetAppsByDevActivity extends Activity {
     @Override

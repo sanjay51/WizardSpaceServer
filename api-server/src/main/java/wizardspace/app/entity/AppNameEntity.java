@@ -11,7 +11,7 @@ import wizardspace.client.DynamoDBClient;
 import java.util.HashMap;
 import java.util.Map;
 
-import static wizardspace.app.AppConstants.*;
+import static wizardspace.app.common.AppConstants.*;
 
 public class AppNameEntity extends DDBEntity<AppNameEntity> {
     public AppNameEntity(String primaryKeyValue) {

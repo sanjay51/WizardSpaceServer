@@ -1,4 +1,4 @@
-package wizardspace.app;
+package wizardspace.app.common;
 
 public class AppConstants {
     // APP related
