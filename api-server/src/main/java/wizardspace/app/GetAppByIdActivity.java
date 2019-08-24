@@ -64,12 +64,15 @@ public class GetAppByIdActivity extends Activity {
         final AllowUnownedAppAccessPolicy allowUnownedAppAccess = new AllowUnownedAppAccessPolicy(this.getStringParameterByName(OWNER_DEV_ID));
         final MinUserAccessLevelAuthorizationPolicy allowAdmin = new MinUserAccessLevelAuthorizationPolicy(AccessLevel.TWELVE);
 
-        final List<Policy> policies = Arrays.asList(allowSelf, allowUnownedAppAccess, allowAdmin);
-        final Policy anyOnePolicy = new OR(policies);
+        if (StringUtils.isBlank(this.getStringParameterByName(USER_ID))) {
+            return Arrays.asList(
+                    new Authorization(OR.of(allowUnownedAppAccess, allowAdmin))
+            );
+        }
 
         return Arrays.asList(
                 new Authentication(USER_ID, AUTH_ID, Auth.getAuthenticationContext()),
-                new Authorization(anyOnePolicy)
+                new Authorization(OR.of(allowSelf, allowUnownedAppAccess, allowAdmin))
         );
     }
 }
