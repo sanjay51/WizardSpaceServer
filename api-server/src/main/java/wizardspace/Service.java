@@ -69,7 +69,7 @@ public class Service extends LambdaRestService {
         return new AddAppToGroupActivity();
     }
 
-    @POST(path="/live-app")
+    @POST(path="/live-apps")
     public Activity publishAppActivity() {
         return new PublishAppActivity();
     }
