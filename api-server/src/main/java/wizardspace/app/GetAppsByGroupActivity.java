@@ -53,7 +53,7 @@ public class GetAppsByGroupActivity extends Activity {
     public List<AuthStrategy> getAuthStrategies() {
         return Arrays.asList(
                 new Authentication(USER_ID, AUTH_ID, Auth.getAuthenticationContext()),
-                new Authorization(Arrays.asList(new MinUserAccessLevelAuthorizationPolicy(AccessLevel.TWELVE)))
+                new Authorization(new MinUserAccessLevelAuthorizationPolicy(AccessLevel.TWELVE))
         );
     }
 }

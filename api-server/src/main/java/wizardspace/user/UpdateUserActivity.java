@@ -74,7 +74,7 @@ public class UpdateUserActivity extends Activity {
     public List<AuthStrategy> getAuthStrategies() {
         return Arrays.asList(
                 new Authentication(REQUESTER_ID, AUTH_ID, Auth.getAuthenticationContext()),
-                new Authorization(Arrays.asList(new AllowSelfPolicy(USER_ID, REQUESTER_ID)))
+                new Authorization(new AllowSelfPolicy(USER_ID, REQUESTER_ID))
         );
     }
 }
