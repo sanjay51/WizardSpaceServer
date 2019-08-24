@@ -1,6 +1,7 @@
 package wizardspace.common;
 
 import IxLambdaBackend.activity.Parameter;
+import IxLambdaBackend.activity.ParameterMap;
 import IxLambdaBackend.auth.authorization.policy.Policy;
 import org.apache.commons.lang3.StringUtils;
 import wizardspace.user.entity.AccessLevel;
@@ -18,7 +19,7 @@ public class MinUserAccessLevelAuthorizationPolicy implements Policy {
     }
 
     @Override
-    public boolean verify(final Map<String, Parameter> map) {
+    public boolean verify(final ParameterMap map) {
         final String userId = map.get(USER_ID).getStringValue();
         if (StringUtils.isBlank(userId)) return false;
 

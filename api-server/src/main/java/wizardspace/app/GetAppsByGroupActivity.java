@@ -10,8 +10,11 @@ import IxLambdaBackend.storage.DDBEntity;
 import IxLambdaBackend.storage.Entity;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
+import wizardspace.app.common.AppGroup;
 import wizardspace.app.entity.AppGroupEntity;
+import wizardspace.common.KVDomain;
 import wizardspace.common.MinUserAccessLevelAuthorizationPolicy;
+import wizardspace.common.S3KVDomain;
 import wizardspace.user.Auth;
 import wizardspace.user.entity.AccessLevel;
 
@@ -45,12 +48,18 @@ public class GetAppsByGroupActivity extends Activity {
         final List<ParamValidator> validators = Arrays.asList(new StringNotBlankValidator());
 
         return Arrays.asList(
-                new Parameter(APP_GROUP_ID, validators)
+                new Parameter(APP_GROUP_ID, validators),
+                new Parameter(USER_ID, null),
+                new Parameter(AUTH_ID, null)
         );
     }
 
     @Override
     public List<AuthStrategy> getAuthStrategies() {
+        final String appGroupId = this.getStringParameterByName(APP_GROUP_ID);
+
+        if (AppGroup.LIVE_APPS.name().equals(appGroupId)) return null;
+
         return Arrays.asList(
                 new Authentication(USER_ID, AUTH_ID, Auth.getAuthenticationContext()),
                 new Authorization(new MinUserAccessLevelAuthorizationPolicy(AccessLevel.TWELVE))

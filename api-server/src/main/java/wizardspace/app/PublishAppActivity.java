@@ -8,6 +8,7 @@ import IxLambdaBackend.auth.authorization.Authorization;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
+import wizardspace.app.common.AppGroup;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppGroupEntity;
 import wizardspace.common.MinUserAccessLevelAuthorizationPolicy;
@@ -21,7 +22,6 @@ import java.util.List;
 
 import static wizardspace.Constants.*;
 import static wizardspace.app.common.AppConstants.*;
-import static wizardspace.common.S3KVDomain.LIVE_APPS;
 
 public class PublishAppActivity extends Activity {
     @Override
@@ -39,11 +39,11 @@ public class PublishAppActivity extends Activity {
         final long epochMillis = System.currentTimeMillis();
 
         // Copy S3 entity
-        s3KvEntity.setKey(LIVE_APPS.name() + "/" + appId);
+        s3KvEntity.setKey(S3KVDomain.LIVE_APPS.name() + "/" + appId);
         s3KvEntity.create();
 
         // Add app to LIVE_APPS group
-        final AppGroupEntity appGroupEntity = AddAppToGroupActivity.addAppToGroup(LIVE_APPS.name(), epochMillis, appEntity, userId, epochMillis);
+        final AppGroupEntity appGroupEntity = AddAppToGroupActivity.addAppToGroup(AppGroup.LIVE_APPS.name(), epochMillis, appEntity, userId, epochMillis);
 
         return new Response(appGroupEntity.getAsKeyValueObject());
     }

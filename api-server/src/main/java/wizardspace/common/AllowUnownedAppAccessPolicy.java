@@ -1,6 +1,7 @@
 package wizardspace.common;
 
 import IxLambdaBackend.activity.Parameter;
+import IxLambdaBackend.activity.ParameterMap;
 import IxLambdaBackend.auth.authorization.policy.Policy;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +17,7 @@ public class AllowUnownedAppAccessPolicy implements Policy {
     final String appDevId;
 
     @Override
-    public boolean verify(final Map<String, Parameter> map) {
+    public boolean verify(final ParameterMap map) {
         return StringUtils.isBlank(this.appDevId) || this.appDevId.startsWith("temp-");
     }
 }
