@@ -38,6 +38,6 @@ public class AppConstants {
     /* APP-GROUP related */
     public static String TABLE_APP_GROUP= "wz-app-group";
     public static String APP_GROUP_ID = "appGroupId";
-    public static String RANK = "wz-rank";
+    public static String RANK = "appRank";
 
 }
