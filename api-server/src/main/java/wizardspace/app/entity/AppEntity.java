@@ -17,8 +17,8 @@ import static wizardspace.app.common.AppConstants.*;
 
 public class AppEntity extends DDBEntity<AppEntity> {
 
-    public AppEntity(final String primaryKeyValue) {
-        super(primaryKeyValue);
+    public AppEntity(final String appId) {
+        super(appId);
     }
 
     private AppEntity(final String gsiPrimaryKeyValue, final String gsiSortKeyValue) {
