@@ -25,6 +25,7 @@ public class CreateAppActivity extends Activity {
     protected Response enact() throws Exception {
         final String userId = getParameterByName(USER_ID).getStringValue();
         final String name = getParameterByName(APP_NAME).getStringValue();
+        final Boolean isExternal = Boolean.parseBoolean(getStringParameterByName(IS_EXTERNAL));
         final String appId = UUID.randomUUID().toString();
         final long epochMillis = System.currentTimeMillis();
         final long liveVersion = 0;
@@ -33,6 +34,7 @@ public class CreateAppActivity extends Activity {
 
         // Create App
         final AppEntity app = constructAppEntity(appId, devId, epochMillis, liveVersion);
+        if (isExternal) app.setAttributeValue(IS_EXTERNAL, "true");
         app.create();
 
         // Create App Version
@@ -68,6 +70,7 @@ public class CreateAppActivity extends Activity {
         return Arrays.asList(
                 new Parameter(USER_ID, EMPTY_LIST),
                 new Parameter(AUTH_ID, EMPTY_LIST),
+                new Parameter(IS_EXTERNAL, EMPTY_LIST),
                 new Parameter(APP_NAME, validators)
         );
     }

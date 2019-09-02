@@ -8,6 +8,7 @@ import IxLambdaBackend.auth.authorization.Authorization;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
+import com.google.gson.Gson;
 import wizardspace.app.common.AppGroup;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppGroupEntity;
@@ -29,18 +30,21 @@ public class PublishAppActivity extends Activity {
         final String appId = this.getStringParameterByName(APP_ID);
         final String userId = this.getStringParameterByName(USER_ID);
 
-        // Read S3 and App entities
-        S3KvEntity s3KvEntity = new S3KvEntity(S3KVDomain.DRAFT_APPS.name() + "/" + appId);
-        s3KvEntity.read();
+        final long epochMillis = System.currentTimeMillis();
 
         AppEntity appEntity = new AppEntity(appId);
         appEntity.read();
 
-        final long epochMillis = System.currentTimeMillis();
+        boolean isExternal = Boolean.valueOf((String) appEntity.getAttribute(IS_EXTERNAL).get());
+        if (! isExternal) {
+            // Read S3 and App entities
+            S3KvEntity s3KvEntity = new S3KvEntity(S3KVDomain.DRAFT_APPS.name() + "/" + appId);
+            s3KvEntity.read();
 
-        // Copy S3 entity
-        s3KvEntity.setKey(S3KVDomain.LIVE_APPS.name() + "/" + appId);
-        s3KvEntity.create();
+            // Copy S3 entity
+            s3KvEntity.setKey(S3KVDomain.LIVE_APPS.name() + "/" + appId);
+            s3KvEntity.create();
+        }
 
         // Add app to LIVE_APPS group
         final AppGroupEntity appGroupEntity = AddAppToGroupActivity.addAppToGroup(AppGroup.LIVE_APPS.name(), epochMillis, appEntity, userId, epochMillis);

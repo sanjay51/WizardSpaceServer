@@ -37,6 +37,7 @@ public class AppEntity extends DDBEntity<AppEntity> {
             put(APP_NAME, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
             put(DESCRIPTION, new Types(ValueType.STRING));
             put(LOGO, new Types(ValueType.STRING));
+            put(IS_EXTERNAL, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
             put(LIVE_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.RESTRICTED));
             put(DRAFT_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(PUBLIC_VERSION, new Types(ValueType.STRING));
