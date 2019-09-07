@@ -8,6 +8,7 @@ public class AppConstants {
     public static String APP_ID = "appId";
     public static String DEV_ID = "devId";
     public static String APP_NAME = "appName";
+    public static String APP_LINK = "appLink";
     public static String IS_EXTERNAL = "isExternal";
     public static String DESCRIPTION = "description";
     public static String LOGO = "logo";
