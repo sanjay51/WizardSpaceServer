@@ -31,21 +31,7 @@ public class AppGroupEntity extends DDBEntity<AppGroupEntity> {
             put(APP_GROUP_ID, new Types(ValueType.STRING, IndexType.PRIMARY_KEY).withAccess(AccessType.RESTRICTED));
             put(RANK, new Types(ValueType.NUMBER, IndexType.SORT_KEY).withAccess(AccessType.RESTRICTED));
 
-            put(APP_ID, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
-            put(DEV_ID, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
-            put(APP_NAME, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
-            put(APP_LINK, new Types(ValueType.STRING));
-            put(DESCRIPTION, new Types(ValueType.STRING));
-            put(LOGO, new Types(ValueType.STRING));
-            put(IS_EXTERNAL, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
-            put(LIVE_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.RESTRICTED));
-            put(DRAFT_VERSION, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
-            put(PUBLIC_VERSION, new Types(ValueType.STRING));
-            put(CATEGORY, new Types(ValueType.STRING));
-            put(IMAGES, new Types(ValueType.STRING_SET));
-            put(VIDEO, new Types(ValueType.STRING));
-            put(RATING, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
-            put(REVIEW_COUNT, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
+            put(APP_DATA, new Types(ValueType.MAP).withAccess(AccessType.READ_ONLY));
             put(CREATION_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(LAST_UPDATED_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(LAST_UPDATED_BY, new Types(ValueType.STRING).withAccess(AccessType.RESTRICTED));

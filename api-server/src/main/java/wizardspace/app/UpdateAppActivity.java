@@ -8,10 +8,12 @@ import IxLambdaBackend.exception.NotAuthorizedException;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.storage.attribute.Attribute;
 import IxLambdaBackend.storage.attribute.value.StringSetValue;
+import IxLambdaBackend.storage.attribute.value.ValueType;
 import IxLambdaBackend.storage.exception.EntityNotFoundException;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import com.amazonaws.util.CollectionUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppNameEntity;
@@ -25,19 +27,22 @@ import static wizardspace.Constants.*;
 import static wizardspace.app.common.AppConstants.*;
 
 public class UpdateAppActivity extends Activity {
+    static ObjectMapper mapper = new ObjectMapper();
+
     @Override
     protected Response enact() throws Exception {
+        final Map<String, String> failedUpdates = new HashMap<>();
+
         final String userId = getStringParameterByName(USER_ID);
         final String appId = getStringParameterByName(APP_ID);
-        final String description = getStringParameterByName(DESCRIPTION);
-        String name = getStringParameterByName(APP_NAME);
-        final String category = getStringParameterByName(CATEGORY);
-        final String logo = getStringParameterByName(LOGO);
+        final Map<String, String> attributes = (Map<String, String>) getParameterByName(APP_ATTRIBUTES).getValue();
 
-        final Parameter<List<String>> images = getParameterByName(IMAGES);
+        String name = attributes.get(APP_NAME);
+
+        final List<String> images = mapper.readValue(attributes.get(IMAGES), List.class);
         Set<String> imageSet = null;
-        if (images != null && images.getValue() != null)
-            imageSet = images.getValue().stream().filter(StringUtils::isNotBlank).collect(Collectors.toSet());
+        if (images != null)
+            imageSet = images.stream().filter(StringUtils::isNotBlank).collect(Collectors.toSet());
 
         final long epochMillis = System.currentTimeMillis();
 
@@ -49,7 +54,7 @@ public class UpdateAppActivity extends Activity {
         String currentDevId = (String) app.getAttribute(DEV_ID).get();
         final String newDevId = authorizeAndGetNewDevId(currentDevId, userId);
 
-        // Check if name is unique
+        // Set name, if it's unique
         boolean isNameTaken = false;
         if (StringUtils.isNotBlank(name)) {
             AppNameEntity appNameEntity = new AppNameEntity(name);
@@ -71,22 +76,33 @@ public class UpdateAppActivity extends Activity {
                 appNameEntity.create();
             }
         }
-
-        // Set attributes and update
-        app.setAttributeValue(DEV_ID, newDevId);
+        if (isNameTaken) failedUpdates.put("appName", "Name is taken");
         if (StringUtils.isNotBlank(name)) app.setAttributeValue(APP_NAME, name);
-        if (StringUtils.isNotBlank(description)) app.setAttributeValue(DESCRIPTION, description);
-        if (StringUtils.isNotBlank(category)) app.setAttributeValue(CATEGORY, category);
-        if (StringUtils.isNotBlank(logo)) app.setAttributeValue(LOGO, logo);
+
+        // Set String attributes and update
+        app.setAttributeValue(DEV_ID, newDevId);
+
+        for (final String attributeName: attributes.keySet()) {
+            if (attributeName.equals(APP_NAME)) continue;
+
+            if (app.getSchema().hasWriteAccess(attributeName)) {
+                app.setAttributeValue(attributeName, attributes.get(attributeName));
+            } else {
+                failedUpdates.put(attributeName, "Invalid attribute or Update not allowed");
+            }
+        }
+
+        // set interesting attributes
         if (!CollectionUtils.isNullOrEmpty(imageSet)) app.setAttribute(IMAGES, new Attribute(IMAGES, new StringSetValue(imageSet)));
 
+        // set additional attributes
         app.setNumberAttributeValue(DRAFT_VERSION, epochMillis);
         app.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
         if (StringUtils.isNotBlank(userId)) app.setAttributeValue(LAST_UPDATED_BY, userId);
         app.update();
 
         Map<String, Object> response = app.getAsKeyValueObject();
-        response.put("isNameTaken", isNameTaken);
+        response.put("Failed updates", failedUpdates);
 
         return new Response(response);
     }
@@ -135,11 +151,7 @@ public class UpdateAppActivity extends Activity {
                 new Parameter(USER_ID, EMPTY_LIST),
                 new Parameter(AUTH_ID, EMPTY_LIST),
                 new Parameter(APP_ID, validators),
-                new Parameter(APP_NAME, EMPTY_LIST),
-                new Parameter(DESCRIPTION, EMPTY_LIST),
-                new Parameter(CATEGORY, EMPTY_LIST),
-                new Parameter(LOGO, EMPTY_LIST),
-                new Parameter(IMAGES, EMPTY_LIST)
+                new Parameter(APP_ATTRIBUTES, validators)
         );
     }
 

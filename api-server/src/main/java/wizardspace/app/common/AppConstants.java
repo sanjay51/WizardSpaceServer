@@ -4,6 +4,8 @@ public class AppConstants {
     // APP related
     public static String TABLE_APPS = "wz-apps";
     public static String GSI_DEV_APP_ID = "devId-appId-index";
+    public static String APP_ATTRIBUTES = "appAttributes";
+    public static String APP_DATA= "appData";
 
     public static String APP_ID = "appId";
     public static String DEV_ID = "devId";
@@ -20,8 +22,12 @@ public class AppConstants {
     public static String VIDEO = "video";
     public static String RATING = "rating";
     public static String REVIEW_COUNT = "reviewCount";
-    // public static String LAST_UPDATED_EPOCH = "lastUpdatedEpoch";
-    // public static String CREATION_EPOCH = "creationEpoch";
+
+    public static String IS_HTTPS_ENABLED = "isHTTPSEnabled";
+    public static String IS_OFFLINE_SUPPORTED = "isOfflineSupported";
+    public static String IS_ANDROID_INSTALLABLE = "isAndroidInstallable";
+    public static String IS_IOS_INSTALLABLE = "isIOSInstallable";
+    public static String LIGHTHOUSE_SCORE = "lighthouseScore";
 
     /* APP-VERSION related */
     public static String TABLE_APP_VERSIONS = "wz-app-versions";

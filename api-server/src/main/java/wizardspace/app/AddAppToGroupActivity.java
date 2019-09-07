@@ -6,6 +6,7 @@ import IxLambdaBackend.auth.AuthStrategy;
 import IxLambdaBackend.auth.Authentication;
 import IxLambdaBackend.auth.authorization.Authorization;
 import IxLambdaBackend.response.Response;
+import IxLambdaBackend.storage.attribute.value.Value;
 import IxLambdaBackend.storage.exception.EntityAlreadyExistsException;
 import IxLambdaBackend.storage.exception.InternalException;
 import IxLambdaBackend.validator.param.ParamValidator;
@@ -18,6 +19,7 @@ import wizardspace.user.Auth;
 import wizardspace.user.entity.AccessLevel;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,12 +53,14 @@ public class AddAppToGroupActivity extends Activity {
                                                final long epochMillis) throws InternalException, EntityAlreadyExistsException {
         final AppGroupEntity appGroupEntity = new AppGroupEntity(groupId, rank);
         appGroupEntity.setAttributeValue(APP_ID, (String) app.getAttribute(APP_ID).get());
-        final Map<String, Attribute> payload = app.getPayload();
 
-        for (final Map.Entry<String, Attribute> entry: payload.entrySet()) {
-            appGroupEntity.setAttribute(entry.getKey(), entry.getValue());
-        }
+        final Map<String, String> appData = new HashMap<>();
 
+        app.getAsMap().entrySet().stream().forEach(
+                entry -> appData.put(entry.getKey(), (String) entry.getValue().get())
+        );
+
+        appGroupEntity.setStringMapAttributeValue(APP_DATA, appData);
         appGroupEntity.setNumberAttributeValue(CREATION_EPOCH, epochMillis);
         appGroupEntity.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
         appGroupEntity.setAttributeValue(LAST_UPDATED_BY, requesterId);
