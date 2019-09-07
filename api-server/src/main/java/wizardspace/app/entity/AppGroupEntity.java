@@ -32,6 +32,8 @@ public class AppGroupEntity extends DDBEntity<AppGroupEntity> {
             put(RANK, new Types(ValueType.NUMBER, IndexType.SORT_KEY).withAccess(AccessType.RESTRICTED));
 
             put(APP_DATA, new Types(ValueType.MAP).withAccess(AccessType.READ_ONLY));
+            put(CATEGORY, new Types(ValueType.STRING, IndexType.GSI_SORT_KEY));
+            put(APP_ID, new Types(ValueType.STRING).withAccess(AccessType.READ_ONLY));
             put(CREATION_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(LAST_UPDATED_EPOCH, new Types(ValueType.NUMBER).withAccess(AccessType.READ_ONLY));
             put(LAST_UPDATED_BY, new Types(ValueType.STRING).withAccess(AccessType.RESTRICTED));

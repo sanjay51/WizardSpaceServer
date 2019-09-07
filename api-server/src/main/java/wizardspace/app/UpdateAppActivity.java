@@ -10,6 +10,7 @@ import IxLambdaBackend.storage.attribute.Attribute;
 import IxLambdaBackend.storage.attribute.value.StringSetValue;
 import IxLambdaBackend.storage.attribute.value.ValueType;
 import IxLambdaBackend.storage.exception.EntityNotFoundException;
+import IxLambdaBackend.validator.param.NotNullValidator;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import com.amazonaws.util.CollectionUtils;
@@ -35,11 +36,12 @@ public class UpdateAppActivity extends Activity {
 
         final String userId = getStringParameterByName(USER_ID);
         final String appId = getStringParameterByName(APP_ID);
-        final Map<String, String> attributes = (Map<String, String>) getParameterByName(APP_ATTRIBUTES).getValue();
+        System.out.println(mapper.writeValueAsString(getParameterByName(APP_ATTRIBUTES).getValue()));
+        final Map<String, Object> attributes = (Map<String, Object>) getParameterByName(APP_ATTRIBUTES).getValue();
 
-        String name = attributes.get(APP_NAME);
+        String name = (String) attributes.get(APP_NAME);
 
-        final List<String> images = mapper.readValue(attributes.get(IMAGES), List.class);
+        final List<String> images = (List<String>) attributes.get(IMAGES);
         Set<String> imageSet = null;
         if (images != null)
             imageSet = images.stream().filter(StringUtils::isNotBlank).collect(Collectors.toSet());
@@ -86,7 +88,7 @@ public class UpdateAppActivity extends Activity {
             if (attributeName.equals(APP_NAME)) continue;
 
             if (app.getSchema().hasWriteAccess(attributeName)) {
-                app.setAttributeValue(attributeName, attributes.get(attributeName));
+                app.setAttributeValue(attributeName, String.valueOf(attributes.get(attributeName)));
             } else {
                 failedUpdates.put(attributeName, "Invalid attribute or Update not allowed");
             }
@@ -151,7 +153,7 @@ public class UpdateAppActivity extends Activity {
                 new Parameter(USER_ID, EMPTY_LIST),
                 new Parameter(AUTH_ID, EMPTY_LIST),
                 new Parameter(APP_ID, validators),
-                new Parameter(APP_ATTRIBUTES, validators)
+                new Parameter(APP_ATTRIBUTES, Arrays.asList(new NotNullValidator()))
         );
     }
 

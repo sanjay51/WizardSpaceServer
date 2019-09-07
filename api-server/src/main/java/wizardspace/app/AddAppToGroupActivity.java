@@ -11,6 +11,8 @@ import IxLambdaBackend.storage.exception.EntityAlreadyExistsException;
 import IxLambdaBackend.storage.exception.InternalException;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppGroupEntity;
@@ -29,6 +31,8 @@ import static wizardspace.Constants.*;
 import static wizardspace.app.common.AppConstants.*;
 
 public class AddAppToGroupActivity extends Activity {
+    static ObjectMapper objectMapper = new ObjectMapper();
+
     @Override
     protected Response enact() throws Exception {
         final String groupId = getStringParameterByName(APP_GROUP_ID);
@@ -52,12 +56,20 @@ public class AddAppToGroupActivity extends Activity {
                                                final String requesterId,
                                                final long epochMillis) throws InternalException, EntityAlreadyExistsException {
         final AppGroupEntity appGroupEntity = new AppGroupEntity(groupId, rank);
+
         appGroupEntity.setAttributeValue(APP_ID, (String) app.getAttribute(APP_ID).get());
+        appGroupEntity.setAttributeValue(CATEGORY, (String) app.getAttribute(CATEGORY).get());
 
         final Map<String, String> appData = new HashMap<>();
 
         app.getAsMap().entrySet().stream().forEach(
-                entry -> appData.put(entry.getKey(), (String) entry.getValue().get())
+                entry -> {
+                    try {
+                        appData.put(entry.getKey(), objectMapper.writeValueAsString(entry.getValue().get()));
+                    } catch (JsonProcessingException e) {
+                        System.out.println(e);
+                    }
+                }
         );
 
         appGroupEntity.setStringMapAttributeValue(APP_DATA, appData);
