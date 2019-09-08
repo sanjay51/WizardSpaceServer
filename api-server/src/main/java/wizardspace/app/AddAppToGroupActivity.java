@@ -6,14 +6,10 @@ import IxLambdaBackend.auth.AuthStrategy;
 import IxLambdaBackend.auth.Authentication;
 import IxLambdaBackend.auth.authorization.Authorization;
 import IxLambdaBackend.response.Response;
-import IxLambdaBackend.storage.attribute.value.Value;
 import IxLambdaBackend.storage.exception.EntityAlreadyExistsException;
 import IxLambdaBackend.storage.exception.InternalException;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringUtils;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppGroupEntity;
 import wizardspace.common.MinUserAccessLevelAuthorizationPolicy;
@@ -25,13 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import IxLambdaBackend.storage.attribute.Attribute;
-
 import static wizardspace.Constants.*;
 import static wizardspace.app.common.AppConstants.*;
 
 public class AddAppToGroupActivity extends Activity {
-    static ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     protected Response enact() throws Exception {

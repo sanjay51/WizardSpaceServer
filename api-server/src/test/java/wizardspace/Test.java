@@ -1,22 +1,18 @@
 package wizardspace;
 
-import IxLambdaBackend.storage.Entity;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import org.junit.Before;
 import wizardspace.app.UpdateAppActivity;
 import wizardspace.app.entity.AppEntity;
-import wizardspace.app.entity.AppGroupEntity;
 import wizardspace.app.entity.AppVersionEntity;
 import wizardspace.client.DynamoDBClient;
 import wizardspace.kv.KvEntity;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static wizardspace.app.common.AppConstants.*;
@@ -50,9 +46,11 @@ public class Test {
 
     @org.junit.Test
     public void testAppGroupEntityReadAll() throws Exception {
-        DynamoDBClient.setClient(ddb);
 
-        final AppGroupEntity appGroupEntity = new AppGroupEntity("LIVE_APPS");
+        final AppEntity app = new AppEntity("8af805ef-0667-4a3c-b7a9-5505e17a9b17");
+        app.read();
+
+        //AddAppToGroupActivity.addAppToGroup("LIVE_APPS", 1567919237004L, app, "bd52e962-c5ee-4494-b052-d091e7456194", System.currentTimeMillis());
         //final List<Entity> entities = appGroupEntity.getAll();
 
         System.out.println("hello");
