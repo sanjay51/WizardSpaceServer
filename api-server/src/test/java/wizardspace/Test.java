@@ -1,12 +1,33 @@
 package wizardspace;
 
+import IxLambdaBackend.storage.Entity;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import org.junit.Before;
+import wizardspace.app.UpdateAppActivity;
 import wizardspace.app.entity.AppEntity;
+import wizardspace.app.entity.AppGroupEntity;
 import wizardspace.app.entity.AppVersionEntity;
+import wizardspace.client.DynamoDBClient;
 import wizardspace.kv.KvEntity;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static wizardspace.app.common.AppConstants.*;
 
 public class Test {
+    final static AmazonDynamoDB ddb = AmazonDynamoDBClientBuilder.standard().withCredentials(new ProfileCredentialsProvider("wizardspace")).withRegion(Regions.US_EAST_1).build();
+
+    @Before
+    public void init() {
+        DynamoDBClient.setClient(ddb);
+    }
     @org.junit.Test
     public void test() throws Exception {
         final AppVersionEntity appVersion = new AppVersionEntity("asdf", 1.0);
@@ -28,12 +49,48 @@ public class Test {
     }
 
     @org.junit.Test
-    public void testAppEntityUpdate() throws Exception {
-        final AppEntity appEntity = new AppEntity("926bf4a9-1d67-4b0a-9d78-e23836e12d07");
-        //appEntity.read();
+    public void testAppGroupEntityReadAll() throws Exception {
+        DynamoDBClient.setClient(ddb);
 
-        appEntity.setNumberAttributeValue(DRAFT_VERSION, 234);
-        //appEntity.update();
+        final AppGroupEntity appGroupEntity = new AppGroupEntity("LIVE_APPS");
+        //final List<Entity> entities = appGroupEntity.getAll();
+
+        System.out.println("hello");
+    }
+
+
+    @org.junit.Test
+    public void testAnother() throws Exception {
+        final String appId = "5c54ac66-379c-4826-9073-7f71c2efa656";
+        final String userId = "bd52e962-c5ee-4494-b052-d091e7456194";
+
+        final Map<String, Object> attributes = new HashMap<>();
+        attributes.put(IMAGES, Arrays.asList("https://d3frsattnbx5l6.cloudfront.net/1534061655472-1800flowers-1800flowers1.png",
+                "https://d3frsattnbx5l6.cloudfront.net/1534061656156-1800flowers-1800flowers2.png",
+                "https://d3frsattnbx5l6.cloudfront.net/1534061656285-1800flowers-1800flowers3.png"));
+        attributes.put(DEV_ID, userId);
+        attributes.put(IS_EXTERNAL, true);
+        attributes.put(APP_NAME, "1800Flowers");
+        attributes.put("description", "Send flowers and send a smile! Discover fresh flowers online, gift baskets, and florist-designed arrangements. Flower delivery is easy at 1-800-Flowers.com.");
+        attributes.put("isOfflineSupported", false);
+        attributes.put("isIOSInstallable", true);
+        attributes.put("appLink", "https,//pwa.www.1800flowers.com");
+        attributes.put("isAndroidInstallable", false);
+        attributes.put("creationEpoch", 1567901461354L);
+        attributes.put("lighthouseScore", 69);
+        attributes.put("appId", "5c54ac66-379c-4826-9073-7f71c2efa656");
+        attributes.put("logo", "https,//d3frsattnbx5l6.cloudfront.net/1532688944141-1800flowers-flowers-icon-192.png");
+        attributes.put("isHTTPSEnabled", true);
+        attributes.put("lastUpdatedEpoch", 1567901467888L);
+        attributes.put("category", "Shopping");
+        attributes.put("draftVersion", 1567901467888L);
+
+        final AppEntity app = new AppEntity(appId);
+        //app.read();
+
+        final Map<String, String> failedUpdates = UpdateAppActivity.populate(appId, app, attributes, userId);
+        //app.update();
+
         System.out.println("hello");
     }
 

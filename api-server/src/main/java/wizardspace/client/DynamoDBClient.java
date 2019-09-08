@@ -15,4 +15,8 @@ public class DynamoDBClient {
         return ddb;
 
     }
+
+    public static void setClient(final AmazonDynamoDB dynamoDB) {
+        ddb = dynamoDB;
+    }
 }

@@ -8,13 +8,11 @@ import IxLambdaBackend.exception.NotAuthorizedException;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.storage.attribute.Attribute;
 import IxLambdaBackend.storage.attribute.value.StringSetValue;
-import IxLambdaBackend.storage.attribute.value.ValueType;
 import IxLambdaBackend.storage.exception.EntityNotFoundException;
 import IxLambdaBackend.validator.param.NotNullValidator;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import com.amazonaws.util.CollectionUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppNameEntity;
@@ -28,38 +26,84 @@ import static wizardspace.Constants.*;
 import static wizardspace.app.common.AppConstants.*;
 
 public class UpdateAppActivity extends Activity {
-    static ObjectMapper mapper = new ObjectMapper();
 
     @Override
     protected Response enact() throws Exception {
-        final Map<String, String> failedUpdates = new HashMap<>();
 
         final String userId = getStringParameterByName(USER_ID);
         final String appId = getStringParameterByName(APP_ID);
-        System.out.println(mapper.writeValueAsString(getParameterByName(APP_ATTRIBUTES).getValue()));
         final Map<String, Object> attributes = (Map<String, Object>) getParameterByName(APP_ATTRIBUTES).getValue();
-
-        String name = (String) attributes.get(APP_NAME);
-
-        final List<String> images = (List<String>) attributes.get(IMAGES);
-        Set<String> imageSet = null;
-        if (images != null)
-            imageSet = images.stream().filter(StringUtils::isNotBlank).collect(Collectors.toSet());
-
-        final long epochMillis = System.currentTimeMillis();
 
         // Read App
         final AppEntity app = new AppEntity(appId);
         app.read();
+
+        // Populate new attributes
+        final Map<String, String> failedUpdates = this.populate(appId, app, attributes, userId);
+
+        // Update app
+        app.update();
+
+        // Send response
+        Map<String, Object> response = app.getAsKeyValueObject();
+        response.put("Failed updates", failedUpdates);
+
+        return new Response(response);
+    }
+
+    public static Map<String, String> populate(final String appId, final AppEntity app,
+                                               final Map<String, Object> attributes,
+                                               final String userId) throws Exception {
+        final Map<String, String> failedUpdates = new HashMap<>();
+
+        String appName = (String) attributes.get(APP_NAME);
+        final long epochMillis = System.currentTimeMillis();
 
         // Obtain DevId
         String currentDevId = (String) app.getAttribute(DEV_ID).get();
         final String newDevId = authorizeAndGetNewDevId(currentDevId, userId);
 
         // Set name, if it's unique
+        boolean isNameTaken = resolveAppName(appName, appId);
+        if (isNameTaken) {
+            failedUpdates.put("appName", "Name is taken");
+        } else {
+            if (StringUtils.isNotBlank(appName)) app.setAttributeValue(APP_NAME, appName);
+        }
+
+        // Set String attributes and update
+        app.setAttributeValue(DEV_ID, newDevId);
+
+        for (final String attributeName: attributes.keySet()) {
+            if (attributeName.equals(APP_NAME)) continue;
+
+            if (app.getSchema().hasWriteAccess(attributeName) && attributes.containsKey(attributeName)) {
+                app.setAttributeValue(attributeName, String.valueOf(attributes.get(attributeName)));
+            } else {
+                failedUpdates.put(attributeName, "Invalid attribute or Update not allowed");
+            }
+        }
+
+        // populate IMAGES
+        final List<String> images = (List<String>) attributes.get(IMAGES);
+        Set<String> imageSet = null;
+        if (images != null)
+            imageSet = images.stream().filter(StringUtils::isNotBlank).collect(Collectors.toSet());
+        if (!CollectionUtils.isNullOrEmpty(imageSet)) app.setAttribute(IMAGES, new Attribute(IMAGES, new StringSetValue(imageSet)));
+
+        // set additional attributes
+        app.setNumberAttributeValue(DRAFT_VERSION, epochMillis);
+        app.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
+        if (StringUtils.isNotBlank(userId)) app.setAttributeValue(LAST_UPDATED_BY, userId);
+
+        return failedUpdates;
+
+    }
+
+    private static boolean resolveAppName(final String appName, final String appId) throws Exception {
         boolean isNameTaken = false;
-        if (StringUtils.isNotBlank(name)) {
-            AppNameEntity appNameEntity = new AppNameEntity(name);
+        if (StringUtils.isNotBlank(appName)) {
+            AppNameEntity appNameEntity = new AppNameEntity(appName);
 
             try {
                 appNameEntity.read();
@@ -67,7 +111,6 @@ public class UpdateAppActivity extends Activity {
                 // if name is taken by some other appId, don't set it
                 if (! StringUtils.equals((String) appNameEntity.getAttribute(APP_ID).get(), appId)) {
                     // name is taken
-                    name = null;
                     isNameTaken = true;
                 }
 
@@ -78,38 +121,11 @@ public class UpdateAppActivity extends Activity {
                 appNameEntity.create();
             }
         }
-        if (isNameTaken) failedUpdates.put("appName", "Name is taken");
-        if (StringUtils.isNotBlank(name)) app.setAttributeValue(APP_NAME, name);
 
-        // Set String attributes and update
-        app.setAttributeValue(DEV_ID, newDevId);
-
-        for (final String attributeName: attributes.keySet()) {
-            if (attributeName.equals(APP_NAME)) continue;
-
-            if (app.getSchema().hasWriteAccess(attributeName)) {
-                app.setAttributeValue(attributeName, String.valueOf(attributes.get(attributeName)));
-            } else {
-                failedUpdates.put(attributeName, "Invalid attribute or Update not allowed");
-            }
-        }
-
-        // set interesting attributes
-        if (!CollectionUtils.isNullOrEmpty(imageSet)) app.setAttribute(IMAGES, new Attribute(IMAGES, new StringSetValue(imageSet)));
-
-        // set additional attributes
-        app.setNumberAttributeValue(DRAFT_VERSION, epochMillis);
-        app.setNumberAttributeValue(LAST_UPDATED_EPOCH, epochMillis);
-        if (StringUtils.isNotBlank(userId)) app.setAttributeValue(LAST_UPDATED_BY, userId);
-        app.update();
-
-        Map<String, Object> response = app.getAsKeyValueObject();
-        response.put("Failed updates", failedUpdates);
-
-        return new Response(response);
+        return isNameTaken;
     }
 
-    private String authorizeAndGetNewDevId(final String currentDevId, final String userId) {
+    private static String authorizeAndGetNewDevId(final String currentDevId, final String userId) {
         boolean isCurrentDevIdTemporary = StringUtils.startsWith(currentDevId, "temp-");
 
         /*

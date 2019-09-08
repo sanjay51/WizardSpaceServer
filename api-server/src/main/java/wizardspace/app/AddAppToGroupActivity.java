@@ -65,8 +65,8 @@ public class AddAppToGroupActivity extends Activity {
         app.getAsMap().entrySet().stream().forEach(
                 entry -> {
                     try {
-                        appData.put(entry.getKey(), objectMapper.writeValueAsString(entry.getValue().get()));
-                    } catch (JsonProcessingException e) {
+                        appData.put(entry.getKey(), entry.getValue().getAsString());
+                    } catch (Exception e) {
                         System.out.println(e);
                     }
                 }

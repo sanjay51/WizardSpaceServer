@@ -29,7 +29,6 @@ public class CreateSessionActivity extends Activity {
         if (! password.equals((String) user.getAttribute(PASSWORD).get())) {
             throw new NotAuthorizedException("Invalid credentials.");
         }
-        System.out.println("email:" + email + "; password:" + password + "; actual_password:" + (String) user.getAttribute(PASSWORD).get());
 
         final Map<String, Object> response = user.getAsKeyValueObject();
 

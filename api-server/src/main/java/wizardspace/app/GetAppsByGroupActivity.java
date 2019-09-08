@@ -10,6 +10,7 @@ import IxLambdaBackend.storage.DDBEntity;
 import IxLambdaBackend.storage.Entity;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import wizardspace.app.common.AppGroup;
 import wizardspace.app.entity.AppGroupEntity;
 import wizardspace.common.KVDomain;
