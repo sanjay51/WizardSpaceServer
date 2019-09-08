@@ -5,7 +5,6 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import org.junit.Before;
-import wizardspace.app.UpdateAppActivity;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppVersionEntity;
 import wizardspace.client.DynamoDBClient;
@@ -48,7 +47,7 @@ public class Test {
     public void testAppGroupEntityReadAll() throws Exception {
 
         final AppEntity app = new AppEntity("8af805ef-0667-4a3c-b7a9-5505e17a9b17");
-        app.read();
+        //app.read();
 
         //AddAppToGroupActivity.addAppToGroup("LIVE_APPS", 1567919237004L, app, "bd52e962-c5ee-4494-b052-d091e7456194", System.currentTimeMillis());
         //final List<Entity> entities = appGroupEntity.getAll();
@@ -86,7 +85,7 @@ public class Test {
         final AppEntity app = new AppEntity(appId);
         //app.read();
 
-        final Map<String, String> failedUpdates = UpdateAppActivity.populate(appId, app, attributes, userId);
+        //final Map<String, String> failedUpdates = UpdateAppActivity.populate(appId, app, attributes, userId);
         //app.update();
 
         System.out.println("hello");
