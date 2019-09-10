@@ -64,10 +64,15 @@ public class Service extends LambdaRestService {
     @GET(path="/app-group/{appGroupId}")
     public Activity getAppsByGroupActivity() { return new GetAppsByGroupActivity(); }
 
+    @GET(path="/app-group/{appGroupId}/app/{appId}")
+    public Activity getAppByGroupAndAppIdActivity() { return new GetAppByGroupAndAppIdActivity(); }
+
     @POST(path="/app-group-entities")
     public Activity addAppToGroupActivity() {
         return new AddAppToGroupActivity();
     }
+
+    /******************** LIVE APPS ****************************/
 
     @POST(path="/live-apps")
     public Activity publishAppActivity() {

@@ -25,6 +25,10 @@ public class AppGroupEntity extends DDBEntity<AppGroupEntity> {
         super(primaryKeyValue, sortKeyValue);
     }
 
+    public AppGroupEntity() {
+        super();
+    }
+
     @Override
     public Schema createSchema() {
         final Map<String, Types> attributes = new HashMap<String, Types>() {{

@@ -1,10 +1,13 @@
 package wizardspace;
 
+import IxLambdaBackend.activity.Parameter;
+import IxLambdaBackend.response.Response;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import org.junit.Before;
+import wizardspace.app.GetAppByGroupAndAppIdActivity;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppVersionEntity;
 import wizardspace.client.DynamoDBClient;
@@ -39,6 +42,17 @@ public class Test {
     @org.junit.Test
     public void testAppEntityRead() throws Exception {
         final AppEntity appEntity = new AppEntity("cf95ae03-7774-4a22-a4d5-f90615e76a4a");
+        //appEntity.read();
+        System.out.println("hello");
+    }
+
+    @org.junit.Test
+    public void testAppGroupEntityRead() throws Exception {
+        GetAppByGroupAndAppIdActivity activity = new GetAppByGroupAndAppIdActivity();
+        activity.addParameter(new Parameter(APP_GROUP_ID, null).withValue("LIVE_APPS"));
+        activity.addParameter(new Parameter(APP_ID, null).withValue("fc792379-f37c-4cd7-8789-c323bd0629aa"));
+
+        //Response response = activity.enact();
         //appEntity.read();
         System.out.println("hello");
     }
