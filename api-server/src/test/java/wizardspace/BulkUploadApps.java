@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
+import wizardspace.app.AddAppToGroupActivity;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.client.DynamoDBClient;
 
@@ -35,7 +36,7 @@ public class BulkUploadApps {
         for (final AppEntity app: getApps()) {
             final long epoch = System.currentTimeMillis();
             //AddAppToGroupActivity.addAppToGroup(appGroupId, epoch, app, myId, epoch);
-            //Thread.sleep(500);
+            //Thread.sleep(40);
         }
 
     }

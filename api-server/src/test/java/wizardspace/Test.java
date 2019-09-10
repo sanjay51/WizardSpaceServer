@@ -8,6 +8,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import org.junit.Before;
 import wizardspace.app.GetAppByGroupAndAppIdActivity;
+import wizardspace.app.GetAppsByGroupAndCategoryActivity;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppVersionEntity;
 import wizardspace.client.DynamoDBClient;
@@ -51,6 +52,17 @@ public class Test {
         GetAppByGroupAndAppIdActivity activity = new GetAppByGroupAndAppIdActivity();
         activity.addParameter(new Parameter(APP_GROUP_ID, null).withValue("LIVE_APPS"));
         activity.addParameter(new Parameter(APP_ID, null).withValue("fc792379-f37c-4cd7-8789-c323bd0629aa"));
+
+        //Response response = activity.enact();
+        //appEntity.read();
+        System.out.println("hello");
+    }
+
+    @org.junit.Test
+    public void testAllAppGroupEntitiesReadByCategory() throws Exception {
+        GetAppsByGroupAndCategoryActivity activity = new GetAppsByGroupAndCategoryActivity();
+        activity.addParameter(new Parameter(APP_GROUP_ID, null).withValue("LIVE_APPS"));
+        activity.addParameter(new Parameter(CATEGORY, null).withValue("Games"));
 
         //Response response = activity.enact();
         //appEntity.read();

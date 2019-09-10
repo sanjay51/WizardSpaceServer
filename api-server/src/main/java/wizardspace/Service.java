@@ -67,6 +67,9 @@ public class Service extends LambdaRestService {
     @GET(path="/app-group/{appGroupId}/app/{appId}")
     public Activity getAppByGroupAndAppIdActivity() { return new GetAppByGroupAndAppIdActivity(); }
 
+    @GET(path="/app-group/{appGroupId}/category/{category}")
+    public Activity getAppsByGroupAndCategoryActivity() { return new GetAppsByGroupAndCategoryActivity(); }
+
     @POST(path="/app-group-entities")
     public Activity addAppToGroupActivity() {
         return new AddAppToGroupActivity();
