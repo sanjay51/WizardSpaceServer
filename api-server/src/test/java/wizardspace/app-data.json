@@ -214,7 +214,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1540141060429-atmocast-icon-512x512.png",
     "title": "Atmocast",
-    "category": "Reference",
+    "category": "Weather",
     "link": "/launch/atmocast",
     "description": "Atmocast provides detailed weather forecasts, including current conditions, hourly forecasts and daily forecasts.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1540134247943-atmocast1.png",
@@ -427,7 +427,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1540480337507-bitcoinverter-icon-256x256.png",
     "title": "Bitcoinverter",
-    "category": "Business",
+    "category": "Finance",
     "link": "/launch/bitcoinverter",
     "description": "A simple currency converter for Bitcoin",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1540457402710-bitcoinverter1.png",
@@ -489,7 +489,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1539506104360-block-android-chrome-512x512.png",
     "title": "Block!",
-    "category": "Business",
+    "category": "Finance",
     "link": "/launch/block",
     "description": "Block! is a simple and powerful POS app for Bitcoin. Link your existing Bitcoin address and manage requests as 1,2,3.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1539440956606-1okok.png",
@@ -773,7 +773,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1539506106017-coinhodler-icon_192x192.png",
     "title": "Coinhodler",
-    "category": "Business",
+    "category": "Finance",
     "link": "/launch/coinhodler",
     "description": "Create a cryptocurrency portfolio within seconds. It’s anonymous, syncs across devices, and supports thousands of coins.",
     "screenshot0": "https://d3frsattnbx5l6.cloudfront.net/1539501753942-coinhodler1.png",
@@ -789,7 +789,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1535358295264-coinranking-icon_512x512.png",
     "title": "Coinranking",
-    "category": "Business",
+    "category": "Finance",
     "link": "/launch/coinranking",
     "description": "Cryptocurrency prices at a glance.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1535151110649-coinranking1.png",
@@ -1011,7 +1011,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1532688967950-currencyconverter-launcher-icon-256.png",
     "title": "Currency Converter",
-    "category": "Business",
+    "category": "Finance",
     "link": "/launch/currencyconverter",
     "description": "",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1527567948502-currency-calc1.png",
@@ -1211,7 +1211,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1557473158539-drivenbeast-icon-512x512.png",
     "title": "drivenbeast",
-    "category": "Lifestyle",
+    "category": "Health & Fitness",
     "link": "/launch/drivenbeast",
     "description": "Do fitness challenges with friends",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1557427155328-login.png",
@@ -1383,7 +1383,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1553933597981-expenseguide-android-chrome-512x512.png",
     "title": "Expense Guide",
-    "category": "Tools",
+    "category": "Finance",
     "link": "/launch/expenseguide",
     "description": "Manage your expenses simply and responsibly. Plan for your safety net and have control over your money.",
     "screenshotNeg1": "https://d3frsattnbx5l6.cloudfront.net/1553857508035-Screenshot_20190329-123309 (1).png",
@@ -1727,7 +1727,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1532688852492-googlemaps-maps_icon_192x192.png",
     "title": "Google Maps",
-    "category": "Travel",
+    "category": "Maps & Navigation",
     "link": "/launch/googlemaps",
     "description": "Get where you're going, faster.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1534061726570-googlemaps-googlemaps1.png",
@@ -1954,7 +1954,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1538487182173-headspace-home-icon-192x192-68a27d4b189a3d7e8e550b9da7225cd6.png",
     "title": "Headspace",
-    "category": "Lifestyle",
+    "category": "Health & Fitness",
     "link": "/launch/headspace",
     "description": "Live a happier, healthier life with just a few minutes of meditation a day on the Headspace app.",
     "screenshotNeg1": "https://d3frsattnbx5l6.cloudfront.net/1538486442682-headspace1.png",
@@ -2017,7 +2017,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1534060845299-hipfit-android-chrome-192x192.png",
     "title": "hip.fit",
-    "category": "Lifestyle",
+    "category": "Health & Fitness",
     "link": "/launch/hipfit",
     "description": "Improve Fitness. Fix Posture. Prevent RSI. Live Pain Free. Whether you are waking up in the morning, working on the computer, watching your baby or taking a shower, hip.fit integrates micro-workouts, stretches and strengthening exercises for everyday activities while factoring in the time and day of the week.",
     "screenshot0": "https://d3frsattnbx5l6.cloudfront.net/1533726573889-hipfit1.png",
@@ -2050,7 +2050,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1532688919820-housinggo-housing-icon.png",
     "title": "Housing Go",
-    "category": "Lifestyle",
+    "category": "House & Home",
     "link": "/launch/housinggo",
     "description": "Search Property in India's first Map Based Real Estate Portal. Browse New projects, flats, ready to move apartments for rent and sale #Housing.com",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1534061667346-housinggo-housing1.png",
@@ -2310,7 +2310,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1532688863553-kuranz-icon_192x192.453b8d1810ddc0d075178e2ee30a82b2.png",
     "title": "Kuranz",
-    "category": "Business",
+    "category": "Finance",
     "link": "/launch/kuranz",
     "description": "Location aware currency converter. Will use GPS to detect the country you're in and the currency. Works offline when you are traveling without internet.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1534061662973-kuranz-kuranz2.png",
@@ -2583,7 +2583,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1532906173344-mappy-icon.png",
     "title": "Mappy",
-    "category": "Travel",
+    "category": "Maps & Navigation",
     "link": "/launch/mappy",
     "description": "Recherche d'adresses, de lieux, comparateur d' itinéraires pour préparer vos déplacements partout en France.",
     "screenshot0": "https://d3frsattnbx5l6.cloudfront.net/1532905800054-mappy1.png",
@@ -2688,7 +2688,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1540480338694-minizare-logo.png",
     "title": "Minizare",
-    "category": "Business",
+    "category": "Finance",
     "link": "/launch/minizare",
     "description": "Minizare is an open source currency converter web app powered by the free currency converter API. Currently Minizare supports about 156 currencies and 201 countries internationally.",
     "screenshot0": "https://d3frsattnbx5l6.cloudfront.net/1540460745786-minizare1.png",
@@ -2721,7 +2721,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1539694754370-moneytracker-favicon-192.png",
     "title": "Money Tracker",
-    "category": "Business",
+    "category": "Finance",
     "link": "/launch/moneytracker",
     "description": "Money Tracker is an open-source progressive web app that allows you to track your income and expenses.",
     "screenshot0": "https://d3frsattnbx5l6.cloudfront.net/1539693025867-moneytracker1.png",
@@ -2752,7 +2752,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1557740803170-morphistic-android-chrome-512x512.png",
     "title": "Morphistic",
-    "category": "Social",
+    "category": "Art & Design",
     "link": "/launch/morphistic",
     "description": "Vector collage art exchange",
     "screenshot0": "https://d3frsattnbx5l6.cloudfront.net/1557505285248-morphistic.app_(iPhone 6_7_8) (2).png",
@@ -3144,7 +3144,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1536211718760-periodicweather-PW_512.png",
     "title": "Periodic Weather",
-    "category": "Reference",
+    "category": "Weather",
     "link": "/launch/periodicweather",
     "description": "A 17kb Preact & Redux based Progressive Web App that provides relevant information to the user outside of the tab.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1536165935158-periodic-weather1.png",
@@ -3158,7 +3158,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1537518898496-periodicweatheranalytics-PWA_512.png",
     "title": "Periodic Weather Analytics",
-    "category": "Reference",
+    "category": "Weather",
     "link": "/launch/periodicweatheranalytics",
     "description": "A high performance Progressive Web App providing an overview of information from Periodic Weather.",
     "screenshot0": "https://d3frsattnbx5l6.cloudfront.net/1537435252501-periodicweatheranalytics1.png",
@@ -3174,7 +3174,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1547025101117-Icon-512.png",
     "title": "photils",
-    "category": "Tools",
+    "category": "Photography",
     "link": "/launch/photils",
     "description": "Photils is a PWA that features many useful tools for amateur and professional photographers.",
     "screenshot0": "https://d3frsattnbx5l6.cloudfront.net/1546984806113-photils1.png",
@@ -3207,7 +3207,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1558992730626-photostack-android-chrome-512x512.png",
     "title": "PhotoStack",
-    "category": "Tools",
+    "category": "Photography",
     "link": "/launch/photostack",
     "description": "A free and open-source batch photo editor with watermarking support.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1558744676845-photostack.app_editor.html(AppScope).png",
@@ -3477,7 +3477,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1550060082290-quietweather-android-chrome-512x512.png",
     "title": "Quiet Weather",
-    "category": "Reference",
+    "category": "Weather",
     "link": "/launch/quietweather",
     "description": "A simple and straightforward to check local weather as well as weather in almost any city worldwide!",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1550067617025-slimekat.github.io_quiet-weather_(iPhone 6_7_8).png",
@@ -3553,7 +3553,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1543961697934-reactweather-icon-512x512.png",
     "title": "React Weather",
-    "category": "Reference",
+    "category": "Weather",
     "link": "/launch/reactweather",
     "description": "PWA React Weather App.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1543857672169-reactweather1.png",
@@ -4235,7 +4235,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1546521383259-staywith-logo.png",
     "title": "Staywith",
-    "category": "Business",
+    "category": "House & Home",
     "link": "/launch/staywith",
     "description": "New room heavy on budget? Why not share it?. Welcome to your friendly portal where you can post your room and get in touch with thousands looking to be your perfect roommate.",
     "screenshotNeg1": "https://d3frsattnbx5l6.cloudfront.net/1546273343010-staywith.ml_(Appscope).png",
@@ -4252,7 +4252,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1542222755652-stocky-stocky-512.png",
     "title": "Stocky",
-    "category": "Business",
+    "category": "Finance",
     "link": "/launch/stocky",
     "description": "Keep an eye on your favorite stocks with Stocky.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1542065892603-stocky.app_.png",
@@ -4386,7 +4386,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1538457815684-swipelife-icon-512x512.png",
     "title": "Swipe Life",
-    "category": "Lifestyle",
+    "category": "Dating",
     "link": "/launch/swipelife",
     "description": "Your source for Tinder online dating stories, dating tips, dating advice, and provocative think pieces. Your dating life is our news.",
     "screenshot0": "https://d3frsattnbx5l6.cloudfront.net/1538433530654-swipelife1.png",
@@ -4636,7 +4636,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1532688758684-tinder-android-chrome-512x512.png",
     "title": "Tinder",
-    "category": "Social",
+    "category": "Dating",
     "link": "/launch/tinder",
     "description": "Tinder - meet interesting people nearby",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1534061819274-tinder-tinder-screenshot.png",
@@ -4924,7 +4924,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1532688928575-umbrella-favicon.ico",
     "title": "Umbrella",
-    "category": "News",
+    "category": "Weather",
     "link": "/launch/umbrella",
     "description": "Umbrella is a beautifuly designed Progressive Web Application for Weather Information.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1534061764766-umbrella-umbrella1.png",
@@ -5030,7 +5030,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1536580283703-vrixe-vlogreq.png",
     "title": "Vrixe",
-    "category": "Tools",
+    "category": "Events",
     "link": "/launch/vrixe",
     "description": "Co-edit and Plan your Events with friends on Vrixe ...all your group plans in one web-app.",
     "screenshotNeg1": "https://d3frsattnbx5l6.cloudfront.net/1536405435748-vrixe1.png",
@@ -5185,7 +5185,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1544414084182-icon_512x512.png",
     "title": "WeatherApp",
-    "category": "Reference",
+    "category": "Weather",
     "link": "/launch/weatherapp",
     "description": "Find out the current weather forecast in any city around the world.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1544414049364-murillo94.github.io_weather-pwa_(appscope) (1).png",
@@ -5246,7 +5246,7 @@
   {
     "logo": "https://d3frsattnbx5l6.cloudfront.net/1536687607192-launcher-icon-512.png",
     "title": "Will Rain Today",
-    "category": "Reference",
+    "category": "Weather",
     "link": "/launch/willraintoday",
     "description": "Minimal Weather PWA.",
     "screenshot1": "https://d3frsattnbx5l6.cloudfront.net/1536661829683-willrain1.png",
