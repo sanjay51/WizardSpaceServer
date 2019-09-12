@@ -18,6 +18,8 @@ import wizardspace.common.MinUserAccessLevelAuthorizationPolicy;
 import wizardspace.user.Auth;
 import wizardspace.user.entity.AccessLevel;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,16 +27,18 @@ import java.util.Map;
 
 import static wizardspace.Constants.AUTH_ID;
 import static wizardspace.Constants.USER_ID;
-import static wizardspace.app.common.AppConstants.*;
+import static wizardspace.app.common.AppConstants.APP_GROUP_ID;
+import static wizardspace.app.common.AppConstants.CATEGORY;
 
 public class GetAppsByGroupAndCategoryActivity extends Activity {
     @Override
     public Response enact() throws Exception {
         final String appGroupId = getStringParameterByName(APP_GROUP_ID);
-        final String category = getStringParameterByName(CATEGORY);
+        final String category = URLDecoder.decode(getStringParameterByName(CATEGORY), StandardCharsets.UTF_8.name());
 
         final AppGroupEntity appGroupEntity = new AppGroupEntity();
 
+        System.out.println(category);
         final List<DDBEntity> entities = appGroupEntity.readAllByGSI(new Attribute(APP_GROUP_ID, new StringValue(appGroupId)),
                 new Attribute(CATEGORY, new StringValue(category)), "appGroupId-category-index");
 
