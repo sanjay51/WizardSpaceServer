@@ -66,7 +66,7 @@ public class Test {
         GetAppsByGroupActivity activity = new GetAppsByGroupActivity();
         activity.addParameter(new Parameter(APP_GROUP_ID, null).withValue("LIVE_APPS"));
         activity.addParameter(new Parameter(PAGE_SIZE, null).withValue("50"));
-        activity.addParameter(new Parameter(PAGINATION_HANDLE, null).withValue(""));
+        activity.addParameter(new Parameter(PAGINATION_HANDLE, null).withValue("{\"appRank\":{\"s\":null,\"n\":\"1569158405437\",\"b\":null,\"m\":null,\"l\":null,\"null\":null,\"bool\":null,\"ss\":null,\"ns\":null,\"bs\":null},\"appGroupId\":{\"s\":\"LIVE_APPS\",\"n\":null,\"b\":null,\"m\":null,\"l\":null,\"null\":null,\"bool\":null,\"ss\":null,\"ns\":null,\"bs\":null}}"));
 
         //Response response = activity.enact();
         //System.out.println("hello");
