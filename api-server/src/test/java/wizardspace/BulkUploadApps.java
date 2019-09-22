@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
+import wizardspace.app.AddAppToGroupActivity;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.client.DynamoDBClient;
 
@@ -34,25 +35,41 @@ public class BulkUploadApps {
 
         for (final AppEntity app: getApps()) {
             final long epoch = System.currentTimeMillis();
-            //AddAppToGroupActivity.addAppToGroup(appGroupId, epoch, app, myId, epoch);
-            //Thread.sleep(40);
+            // AddAppToGroupActivity.addAppToGroup(appGroupId, epoch, app, myId, epoch);
+            // Thread.sleep(20);
         }
 
     }
 
+    public List<LinkedHashMap> prepareData() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<LinkedHashMap> appData = new ArrayList<>();
+        List<LinkedHashMap> links = new ArrayList<>();
+        List<LinkedHashMap> appIds = new ArrayList<>();
+
+        appData = objectMapper.readValue(new File("/personal-workspace/server-wizardspace/api-server/src/test/java/wizardspace/app-data.json"), appData.getClass());
+        links = objectMapper.readValue(new File("/personal-workspace/server-wizardspace/api-server/src/test/java/wizardspace/redirects.json"), links.getClass());
+        appIds = objectMapper.readValue(new File("/personal-workspace/server-wizardspace/api-server/src/test/java/wizardspace/app-id.json"), appIds.getClass());
+
+        for (int i = 0; i < 351; i++) {
+            appData.get(i).put("appId", appIds.get(i).get("appId"));
+            appData.get(i).put("url", links.get(i).get("url"));
+        }
+
+        return appData;
+    }
+
     private List<AppEntity> getApps() throws Exception {
         List<AppEntity> apps = new ArrayList<>();
-        ObjectMapper objectMapper = new ObjectMapper();
 
-        List<LinkedHashMap> rows = new ArrayList<>();
-        rows = objectMapper.readValue(new File("/personal-workspace/WizardSpaceServer/api-server/src/test/java/wizardspace/app-data.json"), rows.getClass());
+        List<LinkedHashMap> rows = prepareData();
         final long epoch = System.currentTimeMillis();
 
         for (LinkedHashMap<String, String> row: rows) {
-            final String appId = UUID.randomUUID().toString();
+            final String appId = row.get("appId");
             final String devId = myId;
             final String appName = row.get("title");
-            final String appLink = row.get("link");
+            final String appLink = row.get("url");
             final String description = row.get("description");
             final String logo = row.get("logo");
             final String isExternal = "true";
@@ -63,6 +80,9 @@ public class BulkUploadApps {
             final String lastUpdatedBy = myId;
             final String category = row.get("category");
             final String video = "";
+
+            if (StringUtils.isBlank(appId)) throw new Exception("appId is blank");
+            if (StringUtils.isBlank(appId)) throw new Exception("appLink is blank");
 
             final Set<String> imageSet = new HashSet<>();
             if (StringUtils.isNotBlank(row.get("screenshotNeg1"))) imageSet.add(row.get("screenshotNeg1"));
