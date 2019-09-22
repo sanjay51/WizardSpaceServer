@@ -5,6 +5,8 @@ public class Constants {
     public static String REQUESTER_ID = "requesterId";
     public static String ATTRIBUTES = "attributes";
     public static String OWNER_DEV_ID = "ownerDevId";
+    public static String PAGINATION_HANDLE = "paginationHandle";
+    public static String PAGE_SIZE = "pageSize";
 
     // USER related
     public static String TABLE_USER = "user";

@@ -8,6 +8,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import org.junit.Before;
 import wizardspace.app.GetAppByGroupAndAppIdActivity;
+import wizardspace.app.GetAppsByGroupActivity;
 import wizardspace.app.GetAppsByGroupAndCategoryActivity;
 import wizardspace.app.entity.AppEntity;
 import wizardspace.app.entity.AppVersionEntity;
@@ -18,6 +19,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static wizardspace.Constants.PAGE_SIZE;
+import static wizardspace.Constants.PAGINATION_HANDLE;
 import static wizardspace.app.common.AppConstants.*;
 
 public class Test {
@@ -56,6 +59,17 @@ public class Test {
         //Response response = activity.enact();
         //appEntity.read();
         System.out.println("hello");
+    }
+
+    @org.junit.Test
+    public void testAllAppGroupEntities() throws Exception {
+        GetAppsByGroupActivity activity = new GetAppsByGroupActivity();
+        activity.addParameter(new Parameter(APP_GROUP_ID, null).withValue("LIVE_APPS"));
+        activity.addParameter(new Parameter(PAGE_SIZE, null).withValue("50"));
+        activity.addParameter(new Parameter(PAGINATION_HANDLE, null).withValue(""));
+
+        //Response response = activity.enact();
+        //System.out.println("hello");
     }
 
     @org.junit.Test

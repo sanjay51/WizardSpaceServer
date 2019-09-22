@@ -8,6 +8,7 @@ import IxLambdaBackend.auth.authorization.Authorization;
 import IxLambdaBackend.response.Response;
 import IxLambdaBackend.storage.DDBEntity;
 import IxLambdaBackend.storage.Entity;
+import IxLambdaBackend.storage.Page;
 import IxLambdaBackend.validator.param.ParamValidator;
 import IxLambdaBackend.validator.param.StringNotBlankValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,29 +20,32 @@ import wizardspace.common.S3KVDomain;
 import wizardspace.user.Auth;
 import wizardspace.user.entity.AccessLevel;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static wizardspace.Constants.AUTH_ID;
-import static wizardspace.Constants.USER_ID;
+import static wizardspace.Constants.*;
 import static wizardspace.app.common.AppConstants.APP_GROUP_ID;
 
 public class GetAppsByGroupActivity extends Activity {
     @Override
-    protected Response enact() throws Exception {
+    public Response enact() throws Exception {
         final String groupId = getStringParameterByName(APP_GROUP_ID);
+        final String paginationHandle = getStringParameterByName(PAGINATION_HANDLE);
+        final int pageSize = Integer.parseInt(getStringParameterByName(PAGE_SIZE));
 
         final AppGroupEntity appGroupEntity = new AppGroupEntity(groupId);
-        final List<Entity> entities = appGroupEntity.getAll();
+        final Page page = appGroupEntity.getAllWithPagination(paginationHandle, pageSize);
 
         List<Map<String, Object>> responseEntities = new ArrayList<>();
-        for (final Entity entity: entities) {
+        for (final Entity entity: page.getEntities()) {
             responseEntities.add(((DDBEntity) entity).getAsKeyValueObject());
         }
 
-        return new Response(responseEntities);
+        final Map<String, Object> response = new HashMap<>();
+
+        response.put("apps", responseEntities);
+        response.put("paginationHandle", page.getPaginationHandle());
+
+        return new Response(response);
     }
 
     @Override
@@ -51,7 +55,9 @@ public class GetAppsByGroupActivity extends Activity {
         return Arrays.asList(
                 new Parameter(APP_GROUP_ID, validators),
                 new Parameter(USER_ID, null),
-                new Parameter(AUTH_ID, null)
+                new Parameter(AUTH_ID, null),
+                new Parameter(PAGINATION_HANDLE, null),
+                new Parameter(PAGE_SIZE, null)
         );
     }
 
